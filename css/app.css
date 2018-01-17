@@ -55,6 +55,12 @@ strong{
 	color: #211f1f;
 	text-transform: uppercase;
 }
+.header.fixed{
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 99999;
+}
 .header ul{
 	display: block;
 	margin: 7.5px;
@@ -137,7 +143,6 @@ strong{
 	color: #211f1f;
 	text-transform: uppercase;
 	box-shadow: 0px 0px 5px 0px #AAAAAA;
-	z-index: 99999;
 	position: relative
 }
 .menu ul{
@@ -469,4 +474,65 @@ strong{
 	padding:15px 0px;
 	color:#d9d9d9;
 	background: #303030;
+}
+
+/*common header*/
+.common-header{
+	padding: 15px 0px;
+}
+.search-common{
+	background: #FFFFFF;
+	border:1px solid #CCCCCC;
+	box-shadow: 0px 0px 5px 0px #EEEEEE;
+	border-radius: 10px;
+	padding: 5px;
+}
+.search-input-common{
+	margin: 0px !important;
+	border-bottom: none !important;
+	height: 20px !important;
+	padding-left: 20px !important;
+}
+.search-input-common:focus{
+	border-bottom: none !important;
+	box-shadow: none !important;
+}
+.search-btn-common{
+	background: #a11623;
+	color: #FFFFFF;
+	border-radius: 10px;
+	padding: 3px;
+	width: 100%;
+}
+
+.login{
+	padding: 60px 0px;
+	color: #211f1f;
+}
+.login .login-box{
+	padding: 15px !important;
+}
+.login .login-box a{
+	top: 0;
+	color: #b13e49;
+}
+.login .login-box a:hover{
+	color: #a11623;
+}
+.theme-btn{
+	background: none;
+	border:1px solid #b13e49;
+	color: #b13e49;
+	border-radius: 10px;
+	padding: 10px 15px;
+	font-weight: bold;
+	margin: 15px 0px;
+}
+.theme-btn:hover,.theme-btn:focus,.theme-btn:active{
+	transition: 0.3s ease;
+	background: #b13e49;
+	color: #FFFFFF;
+}
+.theme-btn.full-width{
+	width: 100%;
 }

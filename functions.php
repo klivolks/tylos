@@ -79,6 +79,10 @@ function logout(){
 	session_destroy();
 	header('Location: /admin/login');
 }
+function member_logout(){
+	session_destroy();
+	header('Location: /');
+}
 function add_admin(){
 	$db = new db;
 	$input = new input;
@@ -99,5 +103,28 @@ function gallery_upload(){
 	$data = array('image'=>$file,'status'=>1);
 	$db->insert('gallery',$data);
 	header('Location: /admin/gallery/');
+}
+function add_member(){
+	$db = new db;
+	$input = new input;
+	if($input->post('klubstaId')=='0'){
+		$member_type=0;
+	}
+	else{
+		$member_type=1;
+	}
+	if($input->post('Password')==$input->post('RetypePassword')){
+		$data = array('member_type'=>$member_type, 'full_name'=>$input->post('FullName'), 'gender'=>$input->post('Gender'), 'email'=>$input->post('Email'), 'klubsta_id'=>$input->post('klubstaId'), 'phone_no'=>$input->post('Phone'), 'location'=>$input->post('Location'), 'password'=>sha1($input->post('Password')));
+		$member_id=$db->insert('members',$data);
+		$_SESSION['member']=$member_id;
+		header('Location: /');
+	}
+	else{
+		header('Location: /register/?msg=error');
+	}
+}
+function klubsta_signin(){
+	$db = new db;
+	$input = new input;
 }
 ?>

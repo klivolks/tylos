@@ -120,6 +120,27 @@ if($plugin=='admin'){
 		}
 	}
 }
+elseif($plugin=='functions'){
+	$function=$param[2];
+	if($function=='add-member'){
+		add_member();
+	}
+}
+elseif($plugin=='register'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/registration');
+	$load->view('website/footer');
+}
+elseif($plugin=='logout'){
+	member_logout();
+}
+elseif($plugin=='signin'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/signin');
+	$load->view('website/footer');
+}
 else{
 	$load->view('website/meta');
 	$load->view('website/home-header');
@@ -132,5 +153,6 @@ else{
 	$load->view('website/home-gallery');
 	$load->view('website/home-blog');
 	$load->view('website/footer');
+	$load->view('website/home-script');
 }
 ?>
