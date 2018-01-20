@@ -44,3 +44,8 @@ function menu_toggle(){
 		$(".content-body").addClass('m12');
 	}
 }
+function addFeatureRow(){
+	var count = parseInt($("#featureCount").val())+1;
+	$("#features").append('<div class="col s12 no-padding"><div class="col s10 input-field"><input type="text" class="validate" name="Feature'+count+'" id="Feature'+count+'"><label for="Feature'+count+'">Feature '+count+'</label></div><div class="col s2 input-field"><button type="button" class="btn red white-text waves-effect" onClick="addFeatureRow()"><i class="material-icons">add_box</i></button></div></div>');
+	$("#featureCount").val(count);
+}

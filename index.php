@@ -111,6 +111,26 @@ if($plugin=='admin'){
 		$load->view('admin/gallery');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='court'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','courts');
+		$load->view('admin/court');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='new-court'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','courts');
+		$load->view('admin/new-court');
+		$load->view('admin/footer');
+	}
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');
@@ -124,6 +144,12 @@ elseif($plugin=='functions'){
 	$function=$param[2];
 	if($function=='add-member'){
 		add_member();
+	}
+	elseif($function=='klubsta-signin'){
+		klubsta_signin();
+	}
+	elseif($function=='signin'){
+		member_signin();
 	}
 }
 elseif($plugin=='register'){

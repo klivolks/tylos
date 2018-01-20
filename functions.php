@@ -126,5 +126,34 @@ function add_member(){
 function klubsta_signin(){
 	$db = new db;
 	$input = new input;
+	$klubsta_id = $input->post('klubstaId');
+	$data = $db->get('members','count(*)',"WHERE `klubsta_id` = '$klubsta_id'");
+	if($data['result'][0][0]!=0){
+		$data = $db->get('members','id',"WHERE `klubsta_id` = '$klubsta_id'");
+		$_SESSION['member'] = $data['result'][0][0];
+		echo 'success';
+	}
+	else{
+		echo 'error';
+	}
+}
+function member_signin(){
+	$db = new db;
+	$input = new input;
+	$email = $input->post('Email');
+	$data = $db->get('members','count(*)',"WHERE `email` = '$email'");
+	if($data['result'][0][0]!=0){
+		$data = $db->get('members','id,password',"WHERE `email` = '$email'");
+		if(sha1($input->post('Password'))==$data['result'][0][1]){
+			$_SESSION['member'] = $data['result'][0][0];
+			header('Location: /');
+		}
+		else{
+			header('Location: /signin/?msg=password-doesnt-match');
+		}
+	}
+	else{
+		header('Location: /signin/?msg=user-not-found');
+	}
 }
 ?>
