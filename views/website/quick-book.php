@@ -28,52 +28,31 @@
 		</div>
 	</div>
 	<div class="container">
-		<div class="row">
+		<div class="row" id="quick-book">
 			<div class="col s12 book-search-wrap">
+				<?php 
+					$db = new db;
+					$data = $db->get('courts','*',"WHERE status = 1 ORDER BY id DESC LIMIT 0,5");
+					foreach($data['result'] as $key => $rw):
+				?>
 				<div class="col s12 book-item">
-					<div class="col l2 s12">
-						<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date">
-					</div>
-					<div class="col l8 s12 item-detail">
-						Court 1
-					</div>
-					<div class="col l2 s12 right-align">
-						<button type="button" class="book-btn">Book Now</button>
-					</div>
+					<form action="/court-book/<?php echo $rw['id']; ?>/" method="post">
+						<div class="col l2 s12">
+							<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date" required>
+						</div>
+						<a href="/court/<?php echo $rw['id']; ?>"><div class="col l8 s12 item-detail">
+							<?php echo $rw['court_name']  ?><br>
+							<small><?php echo $rw['tagline']  ?></small>
+						</div></a>
+						<div class="col l2 s12 right-align">
+							<button type="submit" class="book-btn">Book Now</button>
+						</div>
+					</form>
 				</div>
-				<div class="col s12 book-item">
-					<div class="col l2 s12">
-						<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date">
-					</div>
-					<div class="col l8 s12 item-detail">
-						Court 2
-					</div>
-					<div class="col l2 s12 right-align">
-						<button type="button" class="book-btn">Book Now</button>
-					</div>
-				</div>
-				<div class="col s12 book-item">
-					<div class="col l2 s12">
-						<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date">
-					</div>
-					<div class="col l8 s12 item-detail">
-						Court 3
-					</div>
-					<div class="col l2 s12 right-align">
-						<button type="button" class="book-btn">Book Now</button>
-					</div>
-				</div>
-				<div class="col s12 book-item">
-					<div class="col l2 s12">
-						<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date">
-					</div>
-					<div class="col l8 s12 item-detail">
-						Court 4
-					</div>
-					<div class="col l2 s12 right-align">
-						<button type="button" class="book-btn">Book Now</button>
-					</div>
-				</div>
+				<?php
+					endforeach;
+				?>
+				
 			</div>
 		</div>
 	</div>

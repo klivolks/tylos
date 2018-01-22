@@ -170,6 +170,12 @@ elseif($plugin=='signin'){
 	$load->view('website/signin');
 	$load->view('website/footer');
 }
+elseif($plugin=='court'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/court',$param[2]);
+	$load->view('website/footer');
+}
 else{
 	$load->view('website/meta');
 	$load->view('website/home-header');
