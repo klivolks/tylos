@@ -156,4 +156,26 @@ function member_signin(){
 		header('Location: /signin/?msg=user-not-found');
 	}
 }
+function add_court(){
+	$db = new db;
+	$input = new input;
+	$file = $input->image('courts','court_img');
+	$court_name = $input->post('CourtName');
+	$tagline = $input->post('TagLine');
+	$description = $input->post('Description');
+	$data = array('court_name'=>$court_name, 'tagline'=>$tagline, 'description'=>$description, 'featured_img'=>$file, 'status'=>1);
+	$court_id = $db->insert('courts',$data);
+	$feature_count = $input->post('featureCount');
+	$i=1;
+	while($i<=$feature_count){
+		$field="Feature".$i;
+		$feature = $input->post($field);
+		$i++;
+		if($feature!=NULL && $feature!=''){
+			$data = array('court_id'=>$court_id, 'feature'=>$feature);
+			$db->insert('court_features',$data);
+		}
+	}
+	header('Location: /admin/new-court/?msg=1');
+}
 ?>

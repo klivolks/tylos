@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="row" style="margin-top: 15px;">
-			<form class="col l8 push-l2 s12">
+			<form class="col l8 push-l2 s12" method="post" action="/admin/add/court/" enctype="multipart/form-data">
 				<div class="col s12 input-field">
 					<input type="text" name="CourtName" id="CourtName" class="validate" required>
 					<label for="CourtName">Court Name</label>
@@ -37,7 +37,7 @@
 				<div class="col s12 file-field input-field">
 					<div class="btn">
 						<span>Featured Image</span>
-						<input type="file" name="gallery_img">
+						<input type="file" name="court_img">
 					</div>
 					<div class="file-path-wrapper">
 						<input class="file-path validate" type="text">
@@ -54,6 +54,9 @@
 							<button type="button" class="btn red white-text waves-effect" onClick="addFeatureRow()"><i class="material-icons">add_box</i></button>
 						</div>
 					</div>
+				</div>
+				<div class="col s12 input-field">
+					<button type="submit" class="btn btn-flat green white-text waves-effect right">CREATE</button>
 				</div>
 			</form>
 		</div>

@@ -80,6 +80,9 @@ if($plugin=='admin'){
 			elseif($module=='gallery'){
 				gallery_upload();
 			}
+			elseif($module=='court'){
+				add_court();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
