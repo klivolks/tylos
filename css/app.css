@@ -504,7 +504,6 @@ strong{
 	padding: 3px;
 	width: 100%;
 }
-
 .login{
 	padding: 60px 0px;
 	color: #211f1f;
@@ -535,4 +534,16 @@ strong{
 }
 .theme-btn.full-width{
 	width: 100%;
+}
+
+/*court-page*/
+.court-heading{
+	padding: 30px 0px 40px;
+}
+ul.features{
+	margin-left: 30px;
+}
+.features li{
+	list-style: url(/img/point-2.png);
+	margin-bottom: 10px;
 }
