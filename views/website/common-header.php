@@ -6,12 +6,12 @@
 			</div></a>
 			<div class="col l6 hide-on-med-and-down">
 				<div class="row search-common">
-					<form class="col s12 no-padding">
+					<form class="col s12 no-padding" action="/search/" method="post">
 						<div class="col l10 s8 no-padding">
-							<input type="text" class="search-input-common" name="search" placeholder="Search for events and much more at Tylos">
+							<input type="text" class="search-input-common" name="search" placeholder="Search for events and much more at Tylos" required>
 						</div>
 						<div class="col l2 s4 no-padding">
-							<button type="button" class="search-btn-common">SEARCH</button>
+							<button type="submit" class="search-btn-common">SEARCH</button>
 						</div>
 					</form>
 				</div>
@@ -48,8 +48,8 @@
 					<li><a href="#">Courts</a></li>
 					<li><a href="#">Rooms</a></li>
 					<li><a href="#">Events</a></li>
-					<li><a href="#">News</a></li>
-					<li><a href="#">Gallery</a></li>
+					<li><a href="#">Blog</a></li>
+					<li><a href="/gallery/">Gallery</a></li>
 					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>

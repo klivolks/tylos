@@ -7,6 +7,9 @@ function check_session(){
 		return 0;
 	}
 }
+function redirect($slug){
+	header("Location: $slug");
+}
 function admin_authenticate(){
 	$input = new input;
 	$db = new db;

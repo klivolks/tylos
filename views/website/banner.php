@@ -3,12 +3,12 @@
 		<div class="row">
 			<div class="col s12">
 				<div class="row search">
-					<form class="col s12 no-padding">
+					<form class="col s12 no-padding" action="/search/" method="post">
 						<div class="col l10 s8 no-padding">
-							<input type="text" class="search-input" name="search" placeholder="Search for events, courts, players and much more at Tylos">
+							<input type="text" class="search-input" name="search" placeholder="Search for events, courts, players and much more at Tylos" required>
 						</div>
 						<div class="col l2 s4 no-padding">
-							<button type="button" class="search-btn">SEARCH</button>
+							<button type="submit" class="search-btn">SEARCH</button>
 						</div>
 					</form>
 				</div>

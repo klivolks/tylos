@@ -176,7 +176,25 @@ elseif($plugin=='court'){
 	$load->view('website/court',$param[2]);
 	$load->view('website/footer');
 }
-else{
+elseif($plugin=='gallery'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/gallery');
+	$load->view('website/footer');
+}
+elseif($plugin=='search'){
+	$sub_section = $param[2];
+	if($sub_section==''){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/search');
+		$load->view('website/footer');
+	}
+	else{
+		redirect('/not-found/');
+	}
+}
+elseif($plugin==''){
 	$load->view('website/meta');
 	$load->view('website/home-header');
 	$load->view('website/banner');
@@ -189,5 +207,11 @@ else{
 	$load->view('website/home-blog');
 	$load->view('website/footer');
 	$load->view('website/home-script');
+}
+else{
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/404');
+	$load->view('website/footer');
 }
 ?>

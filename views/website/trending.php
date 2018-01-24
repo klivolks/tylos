@@ -128,10 +128,10 @@
 			</div>
 		</div>
 	</div>
-	<a onClick="prev_slide()"><div class="left-wrap valign-wrapper left">
+	<a onClick="prev_slide()" href="#"><div class="left-wrap valign-wrapper left">
 		<i class="material-icons md-48">chevron_left</i>
 		</div></a>
-		<a onClick="next_slide()"><div class="right-wrap valign-wrapper right right-align">
+		<a onClick="next_slide()" href="#"><div class="right-wrap valign-wrapper right right-align">
 		<i class="material-icons md-48" style="position: absolute; right: 0;">chevron_right</i>
 		</div></a>
 </section>

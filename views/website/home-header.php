@@ -6,12 +6,10 @@
 			</div>
 			<div class="col l7 hide-on-med-and-down">
 				<ul>
-					<li><a href="#">We're Tylos</a></li>
-					<li><a href="#">Clubs</a></li>
-					<li><a href="#">Quick Go</a></li>
-					<li><a href="#">Trending Topics</a></li>
+					<li><a href="#">We're tylos</a></li>
 					<li><a href="#">Blog</a></li>
-					<li><a href="#">Gallery</a></li>
+					<li><a href="/gallery/">Gallery</a></li>
+					<li><a href="#">Contact Us</a></li>
 				</ul>
 			</div>
 			<div class="col l3 right-align login-box">

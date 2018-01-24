@@ -14,7 +14,10 @@ $(function(){
 	$('a').click(function(e) {
 		e.preventDefault();
 		newLocation = this.href;
-		$('body').fadeOut(200, newpage);
+		var currentLocation =window.location.href+"#";
+		if(newLocation!=currentLocation){
+			$('body').fadeOut(200, newpage);
+		}
 	});
 	if ((/iphone|ipod|ipad.*os 5/gi).test(navigator.appVersion)) {
 		window.onpageshow = function(evt) {

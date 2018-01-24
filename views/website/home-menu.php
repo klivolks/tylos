@@ -6,13 +6,12 @@
 			</div>
 			<div class="col s10">
 				<ul class="hide-on-med-and-down">
+					<li><a href="#">Courts</a></li>
+					<li><a href="#">Rooms</a></li>
 					<li><a href="#">Games</a></li>
 					<li><a href="#">Events</a></li>
-					<li><a href="#">News</a></li>
 					<li><a href="#">Teams</a></li>
-					<li><a href="#">Rooms</a></li>
-					<li><a href="#">Courts</a></li>
-					<li><a href="#">Offers</a></li>
+					<li><a href="#">Players</a></li>
 				</ul>
 			</div>
 			<div class="col s1 right-align notification-icon">

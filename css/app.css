@@ -547,3 +547,17 @@ ul.features{
 	list-style: url(/img/point-2.png);
 	margin-bottom: 10px;
 }
+.court-common{
+	padding: 30px 0px;
+}
+
+/*search*/
+.not-404{
+	padding: 60px 0px;
+}
+.search-term{
+	padding: 30px 0px;
+}
+.search-result{
+	padding: 30px 0px;
+}
