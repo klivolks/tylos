@@ -5,7 +5,7 @@
 		</div>
 	</div>
 	<div class="row">
-		<a><div class="col l3 s6 item">
+		<a><div class="col l3 s12 item">
 			<div class="event-wrap">
 				<div class="event-poster">
 					<img src="/img/events/event4.jpg" class="event-img">

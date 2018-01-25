@@ -245,7 +245,7 @@ strong{
 	margin-top: -72px;
 }
 .event-details{
-	padding: 15px 0px;
+	padding: 15px !important;
 }
 .left-wrap{
 	height: 100%;
