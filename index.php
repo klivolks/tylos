@@ -134,7 +134,7 @@ if($plugin=='admin'){
 		$load->view('admin/new-court');
 		$load->view('admin/footer');
 	}
-		elseif($sub_page=='members'){
+	elseif($sub_page=='members'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
 		}
@@ -191,6 +191,26 @@ elseif($plugin=='gallery'){
 	$load->view('website/common-header');
 	$load->view('website/gallery');
 	$load->view('website/footer');
+}
+elseif($plugin=='account'){
+	$section = $param[2];
+	if(!isset($_SESSION['member'])){
+		redirect('/signin/');
+	}
+	else{
+		if($section=='profile'){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/my-profile');
+			$load->view('website/footer');
+		}
+		else{
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/my-account');
+			$load->view('website/footer');
+		}
+	}
 }
 elseif($plugin=='search'){
 	$sub_section = $param[2];

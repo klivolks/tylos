@@ -4,7 +4,7 @@
 			<div class="grey lighten-3 col l6 push-l3 s12 login-box">
 				<p><button type="button" onClick="Klubstasignin()" class="theme-btn full-width">SignIn with Social Media</button></p>
 				<p class="center-align"><strong>OR</strong></p>
-				<h5 class="center-align">Register Now</h5>
+				<h5 class="center-align">Sign In Now</h5>
 				<form class="col s12 no-padding" action="/functions/signin/" method="post">
 					<div class="input-field">
 						<input type="email" name="Email" id="Email" class="validate" autocomplete="off" required>
