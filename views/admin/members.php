@@ -32,7 +32,7 @@
 							Name
 						</th>
 						<th>
-							Member_Type
+							Member Type
 						</th>
 						<th>
 							Gender
@@ -67,8 +67,8 @@
 					?>
 						<tr>
 							<td><?php echo $i; ?></td>
-							<td><?php echo $type; ?></td>
 							<td><?php echo $rw['full_name']; ?></td>
+							<td><?php echo $type; ?></td>
 							<td><?php echo $rw['gender']; ?></td>
 							<td><?php echo $rw['email'] ?></td>
 							<td><?php echo $rw['phone_no'] ?></td>

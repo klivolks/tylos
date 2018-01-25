@@ -140,7 +140,7 @@ if($plugin=='admin'){
 		}
 		$load->view('admin/meta');
 		$load->view('admin/header');
-		$load->view('admin/sidebar','courts');
+		$load->view('admin/sidebar','members');
 		$load->view('admin/members');
 		
 	}

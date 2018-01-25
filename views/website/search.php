@@ -12,6 +12,11 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12">
+				<h1>COURTS<br><small>Courts matching your search preference</small></h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col s12">
 				
 			</div>
 		</div>

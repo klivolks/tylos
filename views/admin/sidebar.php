@@ -10,7 +10,7 @@
 				<li><a href="/admin/booking/"><i class="material-icons">book</i><span>BOOKINGS</span></a></li>
 			</ul>
 		</li>
-		<li class="<?php if($sub_page=='users'){ echo 'active-menu'; } ?>"><a href="/admin/members/"><i class="material-icons">verified_user</i><span>MEMBERS</span></a></li>
+		<li class="<?php if($sub_page=='members'){ echo 'active-menu'; } ?>"><a href="/admin/members/"><i class="material-icons">verified_user</i><span>MEMBERS</span></a></li>
 		<li class="<?php if($sub_page=='gallery'){ echo 'active-menu'; } ?>"><a href="/admin/gallery/"><i class="material-icons">photo</i><span>GALLERY</span></a></li>
 		<li class="<?php if($sub_page=='admin'){ echo 'active-menu'; } ?>"><a href="/admin/all"><i class="material-icons">supervisor_account</i><span>ADMINS</span></a>
 			<ul>
