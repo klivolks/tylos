@@ -134,6 +134,16 @@ if($plugin=='admin'){
 		$load->view('admin/new-court');
 		$load->view('admin/footer');
 	}
+		elseif($sub_page=='members'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','courts');
+		$load->view('admin/members');
+		
+	}
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');
