@@ -40,7 +40,7 @@ if($data['result']!=''){
 		<div class="container">
 			<div class="row">
 				<div class="col l6 m6 s12 center-align">
-					<img src="http://placehold.it/500x250" class="responsive-img">
+					<img src="/img/tennis-court-flooring.jpg" class="responsive-img">
 				</div>
 				<div class="col l6 m6 s12">
 					<p><strong>Reserve the clay court with our advanced booking system.</strong></p>
