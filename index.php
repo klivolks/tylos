@@ -83,6 +83,9 @@ if($plugin=='admin'){
 			elseif($module=='court'){
 				add_court();
 			}
+			elseif($module=='news'){
+				add_news();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -144,6 +147,36 @@ if($plugin=='admin'){
 		$load->view('admin/members');
 		
 	}
+		elseif($sub_page=='news'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','news');
+		$load->view('admin/news');
+		
+	}
+	elseif($sub_page=='all-news'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','all-news');
+		$load->view('admin/all-news');
+		
+	}
+	elseif($sub_page=='inventory'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','inventory');
+		$load->view('admin/inventory');
+		
+	}
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');
@@ -164,6 +197,7 @@ elseif($plugin=='functions'){
 	elseif($function=='signin'){
 		member_signin();
 	}
+
 }
 elseif($plugin=='register'){
 	$load->view('website/meta');

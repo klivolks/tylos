@@ -54,7 +54,7 @@
 						$i=1;
 						foreach($data['result'] as $key => $rw){
 							$member_type=$rw['member_type'];
-							$id=$rw['id'];
+							
 							
 							
 						if($member_type==1){
