@@ -84,3 +84,6 @@ function Klubstasignin(){
 		});
 	});
 }
+function add_price(price){
+	$("#price").vale(price);
+}
