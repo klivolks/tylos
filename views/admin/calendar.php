@@ -143,10 +143,10 @@ class Calendar {
         $preYear = $this->currentMonth==1?intval($this->currentYear)-1:$this->currentYear;
          
         return
-            '<div class="header">'.
-                '<a class="prev" href="'.$this->naviHref.'?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
+            '<div class="header2">'.
+                '<a class="prev" href="/admin/inventory/?month='.sprintf('%02d',$preMonth).'&year='.$preYear.'">Prev</a>'.
                     '<span class="title">'.date('Y M',strtotime($this->currentYear.'-'.$this->currentMonth.'-1')).'</span>'.
-                '<a class="next" href="'.$this->naviHref.'?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
+                '<a class="next" href="/admin/inventory/?month='.sprintf("%02d", $nextMonth).'&year='.$nextYear.'">Next</a>'.
             '</div>';
     }
          
