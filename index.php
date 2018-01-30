@@ -148,6 +148,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','members');
 		$load->view('admin/members');
+		$load->view('admin/footer');
 		
 	}
 		elseif($sub_page=='news'){
@@ -158,6 +159,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','news');
 		$load->view('admin/news');
+		$load->view('admin/footer');
 		
 	}
 	elseif($sub_page=='all-news'){
@@ -168,6 +170,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','all-news');
 		$load->view('admin/all-news');
+		$load->view('admin/footer');
 		
 	}
 	elseif($sub_page=='all-booking'){
@@ -178,7 +181,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','all-booking');
 		$load->view('admin/all-booking');
-		
+		$load->view('admin/footer');
 	}
 	elseif($sub_page=='booking-details'){
 		if(check_session()==0){
@@ -188,7 +191,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','booking-details');
 		$load->view('admin/booking-details');
-		
+		$load->view('admin/footer');
 	}
 	elseif($sub_page=='inventory'){
 		if(check_session()==0){
@@ -198,7 +201,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','inventory');
 		$load->view('admin/inventory');
-		
+		$load->view('admin/footer');
 	}
 	elseif($sub_page=='add-rooms'){
 		if(check_session()==0){
@@ -208,7 +211,7 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','add-rooms');
 		$load->view('admin/add-rooms');
-		
+		$load->view('admin/footer');
 	}
 	else{
 		if(check_session()==1){

@@ -16,7 +16,7 @@ $data = $db->get('court_inventory','*',"WHERE (`date` = '$date' AND `court_id` =
 			<div class="grey lighten-3 col l8 push-l2 s12 login-box">
 				<form class="row" action="/booking/confirm/" method="post">
 					<div class="col s12 input-field">
-						
+						<input type="text" class=""
 					</div>
 					<div class="col s12 input-field">
 						<input type="text" value="<?php echo date('d M, Y',strtotime($date)); ?>" disabled>

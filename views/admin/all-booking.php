@@ -14,7 +14,7 @@
 							#
 						</th>
 						<th>
-							Booking_No
+							Booking No
 						</th>
 						<th>
 							User
@@ -31,9 +31,9 @@
 					<tbody>
 					<?php
 						$db = new db;
-						$data = $db->get('court_booking','`court_booking.id` as bookid',"INNER JOIN court_inventory ON `court_booking.timeslot`=`court_inventory.id`");
-						echo $data['query'];
+						$data = $db->get('court_booking','`court_booking`.`id` as bookid,`user`,`timeslot`,`court_booking`.`status`,court_id,`date`,`time`,price',"INNER JOIN court_inventory ON `court_booking`.`timeslot`=`court_inventory`.`id`");
 						$i=1;
+						if(isset($data['result'])):
 						foreach($data['result'] as $key => $rw){
 							$user=$rw['user'];
 							$id=$rw['bookid'];
@@ -55,7 +55,7 @@
 							
 							
 						</tr>
-						<?php $i++; } ?>
+						<?php $i++; } endif; ?>
 
 					</tbody>
 				</table>
