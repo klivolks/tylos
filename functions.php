@@ -194,4 +194,17 @@ function add_news(){
 	header('Location: /admin/news/?msg=1');
 
 }
+function add_rooms(){
+
+	$db=new db;
+	$input=new input;
+	$user = $_SESSION['logged_admin'];
+	$file=$input->image('news','news_image');
+	$title=$input->post('title');
+	$content=$input->post('content');
+	$data = array('user'=>$user,'title'=>$title,'featured_img'=>$file,'content'=>$content,'status'=>1);
+	$db->insert('news',$data);
+	header('Location: /admin/add-rooms/?msg=1');
+
+}
 ?>

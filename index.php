@@ -86,6 +86,9 @@ if($plugin=='admin'){
 			elseif($module=='news'){
 				add_news();
 			}
+			elseif($module=='rooms'){
+				add_rooms();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -167,6 +170,26 @@ if($plugin=='admin'){
 		$load->view('admin/all-news');
 		
 	}
+	elseif($sub_page=='all-booking'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','all-booking');
+		$load->view('admin/all-booking');
+		
+	}
+	elseif($sub_page=='booking-details'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','booking-details');
+		$load->view('admin/booking-details');
+		
+	}
 	elseif($sub_page=='inventory'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
@@ -175,6 +198,16 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','inventory');
 		$load->view('admin/inventory');
+		
+	}
+	elseif($sub_page=='add-rooms'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','add-rooms');
+		$load->view('admin/add-rooms');
 		
 	}
 	else{

@@ -7,7 +7,7 @@
 		<li  class="<?php if($sub_page=='courts'){ echo 'active-menu'; } ?>"><a href="/admin/court/"><i class="material-icons">golf_course</i><span>COURT MANAGEMENT</span></a>
 			<ul>
 				<li><a href="/admin/court/"><i class="material-icons">account_balance</i><span>COURTS</span></a></li>
-				<li><a href="/admin/booking/"><i class="material-icons">book</i><span>BOOKINGS</span></a></li>
+				<li><a href="/admin/all-booking/"><i class="material-icons">book</i><span>BOOKINGS</span></a></li>
 			</ul>
 		</li>
 		<li class="<?php if($sub_page=='members'){ echo 'active-menu'; } ?>"><a href="/admin/members/"><i class="material-icons">verified_user</i><span>MEMBERS</span></a></li>
@@ -19,6 +19,7 @@
 				<li class=""><a href="/admin/all-news"><small>&gt;&gt;</small> ALL NEWS</a></li>
 			</ul>
 		</li>
+		<li class="<?php if($sub_page=='add-rooms'){ echo 'active-menu'; } ?>"><a href="/admin/add-rooms/"><i class="material-icons">insert_chart</i><span>ADD ROOMS</span></a></li>
 		<li class="<?php if($sub_page=='inventory'){ echo 'active-menu'; } ?>"><a href="/admin/inventory/"><i class="material-icons">add_shopping_cart
 </i><span>INVENTORY</span></a></li>
 		<li class="<?php if($sub_page=='admin'){ echo 'active-menu'; } ?>"><a href="/admin/all">
