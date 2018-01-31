@@ -229,5 +229,22 @@ function add_to_cart(){
 		$_SESSION['invoice'] = $invoice_id;
 		redirect('/booking/payment/');
 	}
-} 
+}
+function pay_at_court(){
+	$invoice = $_SESSION['invoice'];
+	$db = new db;
+	$data = $db->get('invoice','booking_id,booking_type',"WHERE `id` = '$invoice'");
+	$booking_type = $data['result'][0][1];
+	$booking_id = $data['result'][0][0];
+	$data = array('status'=>2);
+	$db->update('invoice',$data,$invoice);
+	$data = array('status'=>1);
+	if($booking_type=='1'){
+		$db->update('court_booking',$data,$booking_id);
+		redirect('/booking/success/');
+	}
+	else{
+		redirect('/booking/failed/');
+	}
+}
 ?>

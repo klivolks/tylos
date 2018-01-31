@@ -11,7 +11,7 @@
 				<form method="post" action="/functions/payment/" class="row">
 					<div class="col s12 input-field" style="margin-bottom: 30px;">
 						<p>
-							<input class="with-gap" name="payment_method" type="radio" id="pay-at-court" checked />
+							<input class="with-gap" name="payment_method" type="radio" id="pay-at-court" value="1" checked />
 							<label for="pay-at-court">Pay At Court</label>
 						</p>
 					</div>

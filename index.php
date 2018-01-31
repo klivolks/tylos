@@ -267,7 +267,12 @@ elseif($plugin=='functions'){
 	elseif($function=='confirm'){
 		add_to_cart();
 	}
-
+	elseif($function=='payment'){
+		$input = new input;
+		if($input->post('payment_method')=='1'){
+			pay_at_court();
+		}
+	}
 }
 elseif($plugin=='register'){
 	$load->view('website/meta');
@@ -324,6 +329,15 @@ elseif($plugin=='booking'){
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/invoice');
+		$load->view('website/footer');
+	}
+	if($step=='success'){
+		if(!isset($_SESSION['invoice'])){
+			redirect('/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/success');
 		$load->view('website/footer');
 	}
 }
