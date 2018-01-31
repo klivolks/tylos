@@ -30,8 +30,8 @@
 						foreach($data['result'] as $key => $rw){
 				?>
 						<a><div class="col s12 blog-right-item">
-							<strong>Brighton at forefront of FA plan to revolutionise English women’s football</strong><br>
-							<small>By Tylos Admin, 17 April 2018</small>
+							<strong><?php echo $rw[0]; ?></strong><br>
+							<small>By Tylos Admin, <?php echo date('d M Y',strtotime($rw[2])); ?></small>
 							</div></a><a>
 							<?php
 						}

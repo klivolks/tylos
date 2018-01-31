@@ -20,6 +20,7 @@ $data = $db->get('court_inventory','`id`,time,price',"WHERE (`date` = '$date' AN
 					<div class="col s12 input-field">
 						<input type="text" value="<?php echo $court_name; ?>" disabled>
 						<input type="hidden" name="court" value="<?php echo $court ?>">
+						<input type="hidden" name="booking_type" value="court">
 						<label>Court</label>
 					</div>
 					<div class="col s12 input-field">
@@ -41,7 +42,20 @@ $data = $db->get('court_inventory','`id`,time,price',"WHERE (`date` = '$date' AN
 						<label>Time Slot</label>
 					</div>
 					<div class="col s12 input-field">
+						<?php 
+						if(!isset($data['result'])){
+						?>
+							<div class="card card-panel red white-text">
+								Sorry! You can&acute;t book for this date as no slots are open.
+							</div>
+						<?php	
+						}
+						else{
+						?>
 						<button type="submit" class="theme-btn right"><span>Next</span> <i class="material-icons">arrow_right</i></button>
+						<?php
+						}
+						?>
 					</div>
 				</form>
 			</div>

@@ -212,4 +212,22 @@ function add_rooms(){
 	header('Location: /admin/add-rooms/?msg=1');
 
 }
+function add_to_cart(){
+	$input = new input;
+	$db = new db;
+	$user = $input->post('user');
+	$booking_type = $input->post('bookingType');
+	if($booking_type=='court'){
+		$booking_type = 1;
+		$timeslot = $input->post('timeSlot');
+		$data = array('user'=>$user, 'timeslot'=>$timeslot, 'status'=>0);
+		$booking_id = $db->insert('court_booking',$data);
+		$booking_no = "TY"."U".$user."T".$booking_type."D".$booking_id;
+		$booking_no = substr($booking_no,0,12);
+		$data = array('booking_id'=>$booking_id, 'booking_no'=>$booking_no, 'booking_type'=>$booking_type, 'status'=>0);
+		$invoice_id = $db->insert('invoice',$data);
+		$_SESSION['invoice'] = $invoice_id;
+		redirect('/booking/payment/');
+	}
+} 
 ?>

@@ -1,6 +1,10 @@
 // JavaScript Document
 $(function(){
+	var yesterday = new Date((new Date()).valueOf()-1000*60*60*24);
 	$('.datepicker').pickadate({
+	disable: [
+    	{ from: [0,0,0], to: yesterday }
+  	],
     selectMonths: true,
     selectYears: 15, 
     today: 'Today',

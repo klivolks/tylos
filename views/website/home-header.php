@@ -6,10 +6,10 @@
 			</div>
 			<div class="col l7 hide-on-med-and-down">
 				<ul>
-					<li><a href="#">We're tylos</a></li>
-					<li><a href="#">Blog</a></li>
+					<li><a href="/about-us-tylos/">We're tylos</a></li>
+					<li><a href="/blog/">Blog</a></li>
 					<li><a href="/gallery/">Gallery</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><a href="/contact-us-tylos/">Contact Us</a></li>
 				</ul>
 			</div>
 			<div class="col l3 right-align login-box">

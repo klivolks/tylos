@@ -44,13 +44,13 @@
 			</div>
 			<div class="col s10">
 				<ul class="hide-on-med-and-down">
-					<li><a href="#">We're tylos</a></li>
-					<li><a href="#">Courts</a></li>
-					<li><a href="#">Rooms</a></li>
-					<li><a href="#">Events</a></li>
-					<li><a href="#">Blog</a></li>
+					<li><a href="/about-us-tylos/">We're tylos</a></li>
+					<li><a href="/search/court/">Courts</a></li>
+					<li><a href="/search/rooms/">Rooms</a></li>
+					<li><a href="/search/events/">Events</a></li>
+					<li><a href="/blog/">Blog</a></li>
 					<li><a href="/gallery/">Gallery</a></li>
-					<li><a href="#">Contact Us</a></li>
+					<li><a href="/contact-us-tylos/">Contact Us</a></li>
 				</ul>
 			</div>
 			<div class="col s1 right-align notification-icon">

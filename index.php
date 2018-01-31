@@ -264,6 +264,9 @@ elseif($plugin=='functions'){
 	elseif($function=='signin'){
 		member_signin();
 	}
+	elseif($function=='confirm'){
+		add_to_cart();
+	}
 
 }
 elseif($plugin=='register'){
@@ -288,10 +291,41 @@ elseif($plugin=='court'){
 	$load->view('website/footer');
 }
 elseif($plugin=='court-book'){
+	$input = new input;
+	if(!isset($_SESSION['member'])){
+		redirect('/signin/');
+	}
+	$court = $param[2];
+	if($input->post('dateOfBooking')==''){
+		redirect('/court/'.$court.'/');
+	}
 	$load->view('website/meta');
 	$load->view('website/common-header');
 	$load->view('website/court-book',$param[2]);
 	$load->view('website/footer');
+}
+elseif($plugin=='booking'){
+	$step=$param[2];
+	if($step=='confirm'){
+		$input = new input;
+		$court = $input->post('court');
+		if($input->post('timeSlot')==''){
+			redirect('/court/'.$court.'/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/confirm');
+		$load->view('website/footer');
+	}
+	if($step=='payment'){
+		if(!isset($_SESSION['invoice'])){
+			redirect('/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/invoice');
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='gallery'){
 	$load->view('website/meta');
@@ -325,6 +359,12 @@ elseif($plugin=='search'){
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/search');
+		$load->view('website/footer');
+	}
+	elseif($sub_section=='court'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/court-search');
 		$load->view('website/footer');
 	}
 	else{
