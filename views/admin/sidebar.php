@@ -19,15 +19,14 @@
 				<li class=""><a href="/admin/all-news"><small>&gt;&gt;</small> ALL NEWS</a></li>
 			</ul>
 		</li>
-		<li class="<?php if($sub_page=='all-rooms'){ echo 'active-menu'; } ?>"><a href="/admin/add-rooms/"><i class="material-icons">insert_chart</i><span> ROOMS</span></a>
+		<li class="<?php if($sub_page=='all-rooms'){ echo 'active-menu'; } ?>"><a href="/admin/room-booking/"><i class="material-icons">insert_chart</i><span> ROOMS</span></a>
 		<ul>
 				<li class=""><a href="/admin/all-rooms"><small>&gt;&gt;</small> All ROOMS</a></li>
 				<li class=""><a href="/admin/add-rooms"><small>&gt;&gt;</small> ADD ROOMS</a></li>
-				<li class=""><a href="/admin/booking"><small>&gt;&gt;</small> BOOKING</a></li>
+				<li class=""><a href="/admin/room-booking"><small>&gt;&gt;</small> BOOKING</a></li>
 			</ul>
 		</li>
-		<li class="<?php if($sub_page=='inventory'){ echo 'active-menu'; } ?>"><a href="/admin/inventory/"><i class="material-icons">add_shopping_cart
-</i><span>INVENTORY</span></a></li>
+	
 		<li class="<?php if($sub_page=='admin'){ echo 'active-menu'; } ?>"><a href="/admin/all">
 		<i class="material-icons">supervisor_account</i><span>ADMINS</span></a>
 			<ul>

@@ -28,29 +28,30 @@
               Image
             </th>
              <th>
-            Description
+            Occupancy
             </th>
           
             <th>
-              Occupancy
+            Description
+              
             </th>
           </thead>
           <tbody>
           <?php
             $db = new db;
-            $data = $db->get('','*',"");
+            $data = $db->get('rooms','*',"");
             $i=1;
             foreach($data['result'] as $key => $rw){
               
           ?>
             <tr>
               <td><?php echo $i; ?></td>
-              <td><?php echo $rw['name']; ?></td>
-              <td><?php echo $rw['type']; ?></td>
+              <td><?php echo $rw['room_name']; ?></td>
+              <td><?php echo $rw['room_type']; ?></td>
               <td><?php echo $rw['rent']; ?></td>
-              
               <td><img src="/img/rooms/<?php echo $rw['featured_img'] ?>" class="responsive-img" hight="50px" width="50px"></td>
-              
+              <td><?php echo $rw['max_occupancy']; ?></td>
+              <td><?php echo $rw['description']; ?></td>
               
             </tr>
             <?php $i++; } ?>

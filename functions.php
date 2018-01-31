@@ -207,8 +207,8 @@ function add_rooms(){
 	$occupancy=$input->post('occupancy');
 	$description=$input->post('description');
 
-	//$data = array('user'=>$user,'title'=>$title,'featured_img'=>$file,'content'=>$content,'status'=>1);
-	//$db->insert('',$data);
+	$data = array('room_name'=>$name,'room_type'=>$type,'rent'=>$rent,'featured_img'=>$file,'description'=>$description,'max_occupancy'=>$occupancy,'status'=>1);
+	$db->insert('rooms',$data);
 	header('Location: /admin/add-rooms/?msg=1');
 
 }

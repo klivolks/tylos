@@ -203,16 +203,7 @@ if($plugin=='admin'){
 		$load->view('admin/inventory');
 		$load->view('admin/footer');
 	}
-	elseif($sub_page=='all-rooms'){
-		if(check_session()==0){
-			header('Location: /admin/login/');
-		}
-		$load->view('admin/meta');
-		$load->view('admin/header');
-		$load->view('admin/sidebar','all-rooms');
-		$load->view('admin/all-rooms');
-		$load->view('admin/footer');
-	}
+	
 	elseif($sub_page=='add-rooms'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
@@ -231,6 +222,26 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','all-rooms');
 		$load->view('admin/all-rooms');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='room-booking'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','room-booking');
+		$load->view('admin/room-booking');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='room-details'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','room-details');
+		$load->view('admin/room-details');
 		$load->view('admin/footer');
 	}
 	else{
