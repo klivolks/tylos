@@ -198,12 +198,17 @@ function add_rooms(){
 
 	$db=new db;
 	$input=new input;
-	$user = $_SESSION['logged_admin'];
-	$file=$input->image('news','news_image');
-	$title=$input->post('title');
-	$content=$input->post('content');
-	$data = array('user'=>$user,'title'=>$title,'featured_img'=>$file,'content'=>$content,'status'=>1);
-	$db->insert('news',$data);
+	//$user = $_SESSION['logged_admin'];
+	//$file=$input->image('news','news_image');
+	$name=$input->post('name');
+	$type=$input->post('type');
+	$rent=$input->post('rent');
+	$file=$input->image('rooms','room_image');
+	$occupancy=$input->post('occupancy');
+	$description=$input->post('description');
+
+	//$data = array('user'=>$user,'title'=>$title,'featured_img'=>$file,'content'=>$content,'status'=>1);
+	//$db->insert('',$data);
 	header('Location: /admin/add-rooms/?msg=1');
 
 }
