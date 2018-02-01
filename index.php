@@ -92,6 +92,9 @@ if($plugin=='admin'){
 			elseif($module=='events'){
 				add_events();
 			}
+			elseif($module=='about-us'){
+				about_us();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -285,6 +288,26 @@ if($plugin=='admin'){
 		$load->view('admin/header');
 		$load->view('admin/sidebar','event-details');
 		$load->view('admin/event-details');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='about-us'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','about-us');
+		$load->view('admin/about-us');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='inventory-details'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','inventory-details');
+		$load->view('admin/inventory-details');
 		$load->view('admin/footer');
 	}
 	

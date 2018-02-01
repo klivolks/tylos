@@ -227,6 +227,19 @@ function add_events(){
 	header('Location: /admin/add-events/?msg=1');
 
 }
+function about_us(){
+
+	$db=new db;
+	$input=new input;
+	$user = $_SESSION['logged_admin'];
+	//$file=$input->image('news','news_image');
+	$title=$input->post('title');
+	$content=$input->post('content');
+	$data = array('user'=>$user,'title'=>$title,'content'=>$content,'status'=>1);
+	$db->insert('',$data);
+	header('Location: /admin/about-us/?msg=1');
+
+}
 function add_to_cart(){
 	$input = new input;
 	$db = new db;

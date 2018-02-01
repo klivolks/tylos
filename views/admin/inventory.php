@@ -4,11 +4,11 @@
 </head>
 <body>
 <?php
+$court_id = $_GET['court_id'];
 include 'calendar.php';
- 
+
 $calendar = new Calendar();
- 
-echo $calendar->show();
+echo $calendar->show($court_id);
 ?>
 </body>
 </html>  

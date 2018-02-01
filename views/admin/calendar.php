@@ -34,7 +34,7 @@ class Calendar {
     /**
     * print out the calendar
     */
-    public function show() {
+    public function show($court_id) {
         $year  = null;
         $month = null;
          
@@ -70,7 +70,7 @@ class Calendar {
                         '<div class="box-content">'.
                                 '<ul class="label">'.$this->_createLabels().'</ul>';   
                                 $content.='<div class="clear"></div>';     
-                                $content.='<ul class="dates">';    
+                                $content.='<a href="/admin/inventory-details/?court_id='.$court_id.' "><ul class="dates">';    
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
                                 // Create weeks in a month
@@ -84,7 +84,7 @@ class Calendar {
                                  
                                 $content.='</ul>';
                                  
-                                $content.='<div class="clear"></div>';     
+                                $content.='<div class="clear"> </a> </div>';     
              
                         $content.='</div>';
                  

@@ -31,6 +31,7 @@
 					$i = 0;
 					foreach($data['result'] as $key => $rw):
 					$i++;
+					$court_id=$rw['id'];
 					if($i==1){
 						echo '<div class="col s12 no-padding">';
 					}
@@ -42,8 +43,8 @@
 							</a>
 							<ul>
 							  <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-							  <li><a class="btn-floating yellow darken-2"><i class="material-icons">edit</i></a></li>
-							  <li><a class="btn-floating blue darken-1"  href="/admin/inventory/"><i class="material-icons">remove_red_eye</i></a></li>
+							  <li><a class="btn-floating btn-large red" ><i class="material-icons">edit</i></a></li>
+							  <li><a class="btn-floating blue darken-1"  <?php echo' href="/admin/inventory/?court_id='.$court_id.'"'?>><i class="material-icons">remove_red_eye</i></a></li>
 							</ul>
 						  </div>
 						<img src="/img/courts/<?php echo $rw['featured_img'] ?>" class="responsive-img"><br>

@@ -40,7 +40,7 @@
 				<li class=""><a href="/admin/new"><small>&gt;&gt;</small> NEW ADMIN</a></li>
 			</ul>
 		</li>
-
+		<li class="<?php if($sub_page=='about-us'){ echo 'active-menu'; } ?>"><a href="/admin/about-us/"><i class="material-icons">account_balance</i><span>ABOUT US</span></a></li>
 		<li class="<?php if($sub_page=='settings'){ echo 'active-menu'; } ?>"><a href="/admin/settings/"><i class="material-icons">settings</i><span>SETTINGS</span></a></li>
 	</ul>
 	<div class="footer hide-on-med-and-down">
