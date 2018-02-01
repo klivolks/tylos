@@ -89,6 +89,9 @@ if($plugin=='admin'){
 			elseif($module=='rooms'){
 				add_rooms();
 			}
+			elseif($module=='events'){
+				add_events();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -244,6 +247,48 @@ if($plugin=='admin'){
 		$load->view('admin/room-details');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='add-events'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','add-events');
+		$load->view('admin/add-events');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='all-events'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','all-events');
+		$load->view('admin/all-events');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='event-booking'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','event-booking');
+		$load->view('admin/event-booking');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='event-details'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','event-details');
+		$load->view('admin/event-details');
+		$load->view('admin/footer');
+	}
+	
+
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');

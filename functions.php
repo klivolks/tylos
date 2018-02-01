@@ -198,8 +198,6 @@ function add_rooms(){
 
 	$db=new db;
 	$input=new input;
-	//$user = $_SESSION['logged_admin'];
-	//$file=$input->image('news','news_image');
 	$name=$input->post('name');
 	$type=$input->post('type');
 	$rent=$input->post('rent');
@@ -210,6 +208,23 @@ function add_rooms(){
 	$data = array('room_name'=>$name,'room_type'=>$type,'rent'=>$rent,'featured_img'=>$file,'description'=>$description,'max_occupancy'=>$occupancy,'status'=>1);
 	$db->insert('rooms',$data);
 	header('Location: /admin/add-rooms/?msg=1');
+
+}
+function add_events(){
+
+	$db=new db;
+	$input=new input;
+	$name=$input->post('name');
+	$venue=$input->post('venue');
+	$starting=$input->post('starting');
+	$ending=$input->post('ending');
+	$file=$input->image('events','event_image');
+	$seats=$input->post('seats');
+	$description=$input->post('description');
+
+	$data = array('event_name'=>$name,'featured_img'=>$file,'venue'=>$venue,'event_starting'=>$starting,'event_ending'=>$ending,'description'=>$description,'seats'=>$seats,'status'=>1);
+	$db->insert('events',$data);
+	header('Location: /admin/add-events/?msg=1');
 
 }
 function add_to_cart(){

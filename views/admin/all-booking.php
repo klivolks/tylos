@@ -2,7 +2,7 @@
 		<div class="row" style="margin-top: 20px;">
 			
 			<div class="col s8">
-				<h5>ALL BOOKING</h5>
+				<h5>ALL BOOKINGS</h5>
 			</div>
 			
 		</div>
