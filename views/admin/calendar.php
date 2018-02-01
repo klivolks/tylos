@@ -70,7 +70,7 @@ class Calendar {
                         '<div class="box-content">'.
                                 '<ul class="label">'.$this->_createLabels().'</ul>';   
                                 $content.='<div class="clear"></div>';     
-                                $content.='<a href="/admin/inventory-details/?court_id='.$court_id.'&month='.$month.'&year='.$year.'&day='.$court_id.' "><ul class="dates">';    
+                                $content.='<ul class="dates">';    
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
                                 // Create weeks in a month
@@ -78,13 +78,13 @@ class Calendar {
                                      
                                     //Create days in a week
                                     for($j=1;$j<=7;$j++){
-                                          $content.=$this->_showDay($i*7+$j);
+                                          $content.=$this->_showDay(($i*7+$j),$court_id,$month,$year);
                                     }
                                 }
                                  
                                 $content.='</ul>';
                                  
-                                $content.='<div class="clear"> </a> </div>';     
+                                $content.='<div class="clear">  </div>';     
              
                         $content.='</div>';
                  
@@ -96,7 +96,7 @@ class Calendar {
     /**
     * create the li element for ul
     */
-    private function _showDay($cellNumber){
+    private function _showDay($cellNumber,$court_id,$month,$year){
          
         if($this->currentDay==0){
              
@@ -125,8 +125,8 @@ class Calendar {
         }
              
          
-        return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-                ($cellContent==null?'mask':'').'">'.$cellContent.'</li>';
+        return '<a href="/admin/inventory-details/?court_id='.$court_id.'&month='.$month.'&year='.$year.'&day='.$cellContent.' "><li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
+                ($cellContent==null?'mask':'').'">'.$cellContent.'</li></a>';
     }
      
     /**

@@ -6,17 +6,17 @@
 		<li class="<?php if($sub_page=='dashboard'){ echo 'active-menu'; } ?>"><a href="/admin/dashboard/"><i class="material-icons">dashboard</i><span>DASHBOARD</span></a></li>
 		<li  class="<?php if($sub_page=='courts'){ echo 'active-menu'; } ?>"><a href="/admin/court/"><i class="material-icons">golf_course</i><span>COURT MANAGEMENT</span></a>
 			<ul>
-				<li><a href="/admin/court/"><i class="material-icons">account_balance</i><span>COURTS</span></a></li>
-				<li><a href="/admin/all-booking/"><i class="material-icons">book</i><span>BOOKINGS</span></a></li>
+				<li><a href="/admin/court/"><small>&gt;&gt;</small> COURTS</a></li>
+				<li><a href="/admin/all-booking/"><small>&gt;&gt;</small> BOOKINGS</a></li>
 			</ul>
 		</li>
 		<li class="<?php if($sub_page=='members'){ echo 'active-menu'; } ?>"><a href="/admin/members/"><i class="material-icons">verified_user</i><span>MEMBERS</span></a></li>
 		<li class="<?php if($sub_page=='gallery'){ echo 'active-menu'; } ?>"><a href="/admin/gallery/"><i class="material-icons">photo</i><span>GALLERY</span></a></li>
 		<li class="<?php if($sub_page=='news'){ echo 'active-menu'; } ?>"><a href="/admin/news/">
-		<i class="material-icons"><i className="material-icons">chrome_reader_mode</i></i><span>NEWS</span></a>
-		<ul>
-				<li class=""><a href="/admin/news"><small>&gt;&gt;</small> ADD NEWS</a></li>
+		<i class="material-icons">chrome_reader_mode</i><span>NEWS</span></a>
+			<ul>
 				<li class=""><a href="/admin/all-news"><small>&gt;&gt;</small> ALL NEWS</a></li>
+				<li class=""><a href="/admin/news"><small>&gt;&gt;</small> ADD NEWS</a></li>
 			</ul>
 		</li>
 		<li class="<?php if($sub_page=='all-rooms'){ echo 'active-menu'; } ?>"><a href="/admin/room-booking/"><i class="material-icons">insert_chart</i><span> ROOMS</span></a>

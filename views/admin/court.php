@@ -43,7 +43,7 @@
 							</a>
 							<ul>
 							  <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-							  <li><a class="btn-floating btn-large red" ><i class="material-icons">edit</i></a></li>
+							  <li><a class="btn-floating yellow darken-4" ><i class="material-icons">edit</i></a></li>
 							  <li><a class="btn-floating blue darken-1"  <?php echo' href="/admin/inventory/?court_id='.$court_id.'"'?>><i class="material-icons">remove_red_eye</i></a></li>
 							</ul>
 						  </div>
