@@ -70,7 +70,7 @@ class Calendar {
                         '<div class="box-content">'.
                                 '<ul class="label">'.$this->_createLabels().'</ul>';   
                                 $content.='<div class="clear"></div>';     
-                                $content.='<a href="/admin/inventory-details/?court_id='.$court_id.' "><ul class="dates">';    
+                                $content.='<a href="/admin/inventory-details/?court_id='.$court_id.'&month='.$month.'&year='.$year.'&day='.$court_id.' "><ul class="dates">';    
                                  
                                 $weeksInMonth = $this->_weeksInMonth($month,$year);
                                 // Create weeks in a month
