@@ -55,7 +55,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
 <script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>
-<script type="text/javascript" src="/js/app.js?v=0.0.21"></script>
+<script type="text/javascript" src="/js/app.js?v=0.0.26"></script>
 <script type="text/javascript" src="/js/multislider.min.js"></script>
 </body>
 </html>

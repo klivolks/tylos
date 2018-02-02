@@ -41,7 +41,6 @@ function next_slide(){
 }
 function newpage() {
 window.location = newLocation;
-	$('body').fadeIn(500);
 }
 function Reload() {
 	try {
@@ -91,3 +90,27 @@ function Klubstasignin(){
 function add_price(price){
 	$("#price").vale(price);
 }
+function verify_input(field){
+	if($("#"+field).val()==''){
+		if(field=='dateOfBooking'){
+			$("#msg").html('<div class="card card-panel red white-text">Select date of booking to continue</div>');
+			window.alert('Select Date of booking');
+		}
+		if(field=='check_in'){
+			$("#msg").html('<div class="card card-panel red white-text">Select check in and check out dates to continue</div>');
+		}
+		return false;
+		
+	}
+	else{
+		return true;
+	}
+}
+function activate_tab(n){
+	$("#tab-1").hide();
+	$("#tab-2").hide();
+	$("#tab-3").hide();
+	$("#tab-"+n).show(500);
+	$(".icon").removeClass('active');
+	$("#icon-"+n).addClass('active');
+} 

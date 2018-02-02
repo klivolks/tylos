@@ -367,6 +367,12 @@ elseif($plugin=='court'){
 	$load->view('website/court',$param[2]);
 	$load->view('website/footer');
 }
+elseif($plugin=='room'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/room',$param[2]);
+	$load->view('website/footer');
+}
 elseif($plugin=='court-book'){
 	$input = new input;
 	if(!isset($_SESSION['member'])){
@@ -379,6 +385,20 @@ elseif($plugin=='court-book'){
 	$load->view('website/meta');
 	$load->view('website/common-header');
 	$load->view('website/court-book',$param[2]);
+	$load->view('website/footer');
+}
+elseif($plugin=='room-book'){
+	$input = new input;
+	if(!isset($_SESSION['member'])){
+		redirect('/signin/');
+	}
+	$room = $param[2];
+	if($input->post('check_in')==''||$input->post('check_out')==''){
+		redirect('/court/'.$room.'/');
+	}
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/room-book',$param[2]);
 	$load->view('website/footer');
 }
 elseif($plugin=='booking'){

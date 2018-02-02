@@ -46,8 +46,9 @@ if($data['result']!=''){
 					<p><strong>Reserve the clay court with our advanced booking system.</strong></p>
 					<p>Tennis players with an eye on competing professionally will want to practice and play on different types of court. Tylos has the most comfortable clay court surfaces and it is completely safe for all weather changes.</p>
 					<p>Our Advanced booking system has made simple and easy to book courts.</p>
-					<form action="/court-book/<?php echo $rw['id']; ?>/" method="post" onSubmit="verify_input('dateOfBooking')">
-					<p style="margin-top: 20px;"><div class="input-field"><input type="text" class="datepicker" name="dateOfBooking" required><label>Date of Booking*</label></div></p>
+					<form action="/court-book/<?php echo $rw['id']; ?>/" method="post" onSubmit="return verify_input('dateOfBooking')">
+					<p id="msg"></p>
+					<p style="margin-top: 20px;"><div class="input-field"><input type="text" class="datepicker" id="dateOfBooking" name="dateOfBooking" required><label>Date of Booking*</label></div></p>
 					<p><button type="submit" class="theme-btn right">Book Now</button></p>
 					</form>
 				</div>
