@@ -232,13 +232,32 @@ function about_us(){
 	$db=new db;
 	$input=new input;
 	$user = $_SESSION['logged_admin'];
-	//$file=$input->image('news','news_image');
-	$title=$input->post('title');
+	$data = $db->get("pages","count(*),id","where `page`='about-us'"); 
+	$check=$data['result'][0][0];
+	$id=$data['result'][0][1];
 	$content=$input->post('content');
-	$data = array('user'=>$user,'title'=>$title,'content'=>$content,'status'=>1);
-	$db->insert('',$data);
-	header('Location: /admin/about-us/?msg=1');
-
+	if($check==0){
+	$page="about-us";
+	$data = array('page'=>$page,'content'=>$content,'status'=>1);
+	$db->insert('pages',$data);
+	
+	}
+	else{
+	$data = array('content'=>$content);
+	$db->update('pages',$data,$id);	
+	}
+header('Location: /admin/about-us/?msg=1');
+}
+function inventory_add(){
+$input = new input;
+$db = new db;
+$date =$input->post('date');
+$date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
+$court_id =$input->post('court_id');
+$time =$input->post('time');
+$data = array('court_id'=>$court_id,'date'=>$date,'time'=>$time,'status'=>1);
+$db->insert('court_inventory',$data);	
+header('Location: /admin/court/?msg=1');
 }
 function add_to_cart(){
 	$input = new input;

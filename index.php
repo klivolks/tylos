@@ -92,9 +92,13 @@ if($plugin=='admin'){
 			elseif($module=='events'){
 				add_events();
 			}
+			elseif($module=='inventory-add'){
+				inventory_add();
+			}
 			elseif($module=='about-us'){
 				about_us();
 			}
+			
 		}
 	}
 	elseif($sub_page=='deactivate'){
