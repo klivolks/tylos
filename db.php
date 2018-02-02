@@ -51,5 +51,10 @@ class db{
 		$sql="UPDATE $table SET $string,`updated_at`='$now' WHERE id=$id";
 		$sql=mysqli_query($con,$sql);
 	}
+	function delete($table,$id){
+		$con=$this->connect();
+		$sql="DELETE FROM $table WHERE id=$id";
+		$sql=mysqli_query($con,$sql);
+	}
 }
 ?>

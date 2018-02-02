@@ -8,6 +8,11 @@
 					<div class="card-panel green white-text">Court added successfully!!</div>
 				<?php
 			}
+				if($msg=='2'){
+				?>
+					<div class="card-panel green white-text">Court edited successfully!!</div>
+				<?php
+			}
 				else if($msg=='0'){
 				?>
 					<div class="card-panel red white-text">Some error occured!!</div>
@@ -42,8 +47,8 @@
 							  <i class="large material-icons">menu</i>
 							</a>
 							<ul>
-							  <li><a class="btn-floating red"><i class="material-icons">delete</i></a></li>
-							  <li><a class="btn-floating yellow darken-4" ><i class="material-icons">edit</i></a></li>
+							  <li><a <?php echo  'href="/admin/add/court-delete/?id='.$court_id.'"' ?> class="btn-floating red"><i class="material-icons">delete</i></a></li>
+							  <li><a <?php echo  'href="/admin/court_edit/?id='.$court_id.'"' ?> class="btn-floating yellow darken-4" ><i class="material-icons">edit</i></a></li>
 							  <li><a class="btn-floating blue darken-1"  <?php echo' href="/admin/inventory/?court_id='.$court_id.'"'?>><i class="material-icons">remove_red_eye</i></a></li>
 							</ul>
 						  </div>

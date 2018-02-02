@@ -51,8 +51,11 @@
           <label for="title">Date</label>
         </div>
           <div class="input-field col s12">
-          <input type="text"   value = "<?php echo $court_id; ?>"  name="court_id"   class="validate">
-          <label for="title">Court id</label>
+          <input type="hidden"   value = "<?php echo $court_id; ?>"  name="court_id"   class="validate">
+        <div class="input-field col s12">
+          <input type="text"  id="title" value = ""  name="price"   class="validate">
+          <label for="title">Price</label>
+        </div>
         </div>
          <div class="col s12 input-field">
             <button type="submit" class="btn-flat red white-text">Submit</button>

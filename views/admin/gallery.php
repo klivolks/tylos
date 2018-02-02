@@ -45,13 +45,15 @@
 			$i = 0;
 			foreach($data['result'] as $key => $rw):
 			$i++;
+			$id=$rw['id'];
+		
 			if($i==1){
 				echo '<div class="col s12 no-padding">';
 			}
 		?>
 			<div class="col l3 s12" style="position: relative;">
 				<img src="/img/gallery/<?php echo $rw['image'] ?>" class="responsive-img gallery-img">
-				<a href="#" class="btn-floating right red" style="position: absolute; top: 0; right: 0;"><i class="material-icons">close</i></a>
+				<a<?php echo' href="/admin/add/gallery-delete/?id='.$id.'"'?> class="btn-floating right red" style="position: absolute; top: 0; right: 0;"><i class="material-icons">close</i></a>
 			</div>
 			<?php
 				

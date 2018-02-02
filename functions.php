@@ -252,12 +252,38 @@ function inventory_add(){
 $input = new input;
 $db = new db;
 $date =$input->post('date');
+$price =$input->post('price');
 $date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
 $court_id =$input->post('court_id');
 $time =$input->post('time');
-$data = array('court_id'=>$court_id,'date'=>$date,'time'=>$time,'status'=>1);
+$data = array('court_id'=>$court_id,'date'=>$date,'time'=>$time,'price'=>$price,'status'=>1);
 $db->insert('court_inventory',$data);	
 header('Location: /admin/court/?msg=1');
+}
+function gallery_delete(){
+$input = new input;
+$db = new db;
+$id =$_GET['id'];
+$db->delete('gallery',$id);	
+header('Location: /admin/gallery/');
+}
+function court_delete(){
+$input = new input;
+$db = new db;
+$id =$_GET['id'];
+$db->delete('courts',$id);	
+header('Location: /admin/court/');
+}
+function edit(){
+$input = new input;
+$db = new db;
+$id =$input->post('id');
+$name=$input->post('name');
+$tagline=$input->post('tagline');
+$description=$input->post('description');
+$data = array('court_name'=>$name,'tagline'=>$tagline,'description'=>$description);
+$db->update('courts',$data,$id);	
+header('Location: /admin/court/?msg=2');
 }
 function add_to_cart(){
 	$input = new input;

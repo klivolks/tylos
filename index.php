@@ -98,6 +98,15 @@ if($plugin=='admin'){
 			elseif($module=='about-us'){
 				about_us();
 			}
+			elseif($module=='gallery-delete'){
+				gallery_delete();
+			}
+			elseif($module=='court-delete'){
+				court_delete();
+			}
+			elseif($module=='edit'){
+				edit();
+			}
 			
 		}
 	}
@@ -314,6 +323,17 @@ if($plugin=='admin'){
 		$load->view('admin/inventory-details');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='court_edit'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','court_edit');
+		$load->view('admin/court_edit');
+		$load->view('admin/footer');
+	}
+	
 	
 
 	else{
