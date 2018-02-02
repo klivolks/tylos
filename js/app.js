@@ -94,7 +94,6 @@ function verify_input(field){
 	if($("#"+field).val()==''){
 		if(field=='dateOfBooking'){
 			$("#msg").html('<div class="card card-panel red white-text">Select date of booking to continue</div>');
-			window.alert('Select Date of booking');
 		}
 		if(field=='check_in'){
 			$("#msg").html('<div class="card card-panel red white-text">Select check in and check out dates to continue</div>');

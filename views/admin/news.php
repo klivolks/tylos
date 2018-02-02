@@ -47,7 +47,7 @@
       <div class="row">
    	 <div class="file-field input-field">
       <div class="btn">
-        <span>File</span>
+        <span>Featured Image</span>
         <input type="file" name="news_image">
       </div>
       <div class="file-path-wrapper">
