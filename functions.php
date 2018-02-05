@@ -194,6 +194,29 @@ function add_news(){
 	header('Location: /admin/news/?msg=1');
 
 }
+function news_delete(){
+
+	$db=new db;
+	$input=new input;
+	$id =$_GET['id'];
+	$db->delete('news',$id);	
+	header('Location: /admin/all-news/');
+
+}
+function news_edit(){
+
+$input = new input;
+$db = new db;
+$id =$input->post('id');
+$title=$input->post('name');
+$content=$input->post('content');
+
+$data = array('title'=>$title,'content'=>$content);
+$db->update('news',$data,$id);	
+header('Location: /admin/all-news/?msg=1');
+
+}
+
 function add_rooms(){
 
 	$db=new db;

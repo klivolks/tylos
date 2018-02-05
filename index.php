@@ -107,7 +107,12 @@ if($plugin=='admin'){
 			elseif($module=='edit'){
 				edit();
 			}
-			
+			elseif($module=='news-delete'){
+				news_delete();
+			}
+			elseif($module=='news-edit'){
+				news_edit();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -333,7 +338,17 @@ if($plugin=='admin'){
 		$load->view('admin/court_edit');
 		$load->view('admin/footer');
 	}
-	
+	elseif($sub_page=='news-edit'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','news-edit');
+		$load->view('admin/news-edit');
+		$load->view('admin/footer');
+	}
+
 	
 
 	else{
