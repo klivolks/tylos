@@ -2,7 +2,7 @@
 class db{
 	function connect(){
 		date_default_timezone_set('Asia/Kolkata');
-		$con=mysqli_connect("localhost","root","iamadventurer","tylos");
+		$con=mysqli_connect("localhost","root","","tylos");
 		return $con;
 	}
 	function get($table,$columns,$condition){

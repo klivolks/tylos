@@ -233,6 +233,30 @@ function add_rooms(){
 	header('Location: /admin/add-rooms/?msg=1');
 
 }
+function room_delete(){
+
+	$db=new db;
+	$input=new input;
+	$id =$_GET['id'];
+	$db->delete('rooms',$id);	
+	header('Location: /admin/all-rooms/');
+
+}
+function room_edit(){
+
+$input = new input;
+$db = new db;
+$id =$input->post('id');
+$name=$input->post('name');
+$type=$input->post('type');
+$rent=$input->post('rent');
+$description=$input->post('description');
+$occupancy=$input->post('occupancy');
+$data = array('room_name'=>$name,'room_type'=>$type,'rent'=>$rent,'description'=>$description,'max_occupancy'=>$occupancy);
+$db->update('rooms',$data,$id);	
+header('Location: /admin/all-rooms/?msg=1');
+
+}
 function add_events(){
 
 	$db=new db;
@@ -248,6 +272,31 @@ function add_events(){
 	$data = array('event_name'=>$name,'featured_img'=>$file,'venue'=>$venue,'event_starting'=>$starting,'event_ending'=>$ending,'description'=>$description,'seats'=>$seats,'status'=>1);
 	$db->insert('events',$data);
 	header('Location: /admin/add-events/?msg=1');
+
+}
+function event_delete(){
+
+	$db=new db;
+	$input=new input;
+	$id =$_GET['id'];
+	$db->delete('events',$id);	
+	header('Location: /admin/all-events/');
+
+}
+function event_edit(){
+
+$input = new input;
+$db = new db;
+$id =$input->post('id');
+$name=$input->post('name');
+$venue=$input->post('venue');
+$starting=$input->post('starting');
+$ending=$input->post('ending');
+$descripton=$input->post('descripton');
+$seats=$input->post('seats');
+$data = array('event_name'=>$name,'venue'=>$venue,'event_starting'=>$starting,'event_ending'=>$ending,'description'=>$descripton,'seats'=>$seats);
+$db->update('events',$data,$id);	
+header('Location: /admin/all-events/?msg=1');
 
 }
 function about_us(){

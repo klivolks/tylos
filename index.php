@@ -113,6 +113,18 @@ if($plugin=='admin'){
 			elseif($module=='news-edit'){
 				news_edit();
 			}
+			elseif($module=='room-delete'){
+				room_delete();
+			}
+			elseif($module=='room-edit'){
+				room_edit();
+			}
+			elseif($module=='event-delete'){
+				event_delete();
+			}
+				elseif($module=='event-edit'){
+				event_edit();
+			}
 		}
 	}
 	elseif($sub_page=='deactivate'){
@@ -348,7 +360,29 @@ if($plugin=='admin'){
 		$load->view('admin/news-edit');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='room-edit'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','room-edit');
+		$load->view('admin/room-edit');
+		$load->view('admin/footer');
+	}
+	elseif($sub_page=='event-edit'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','event-edit');
+		$load->view('admin/event-edit');
+		$load->view('admin/footer');
+	}
 
+
+	
 	
 
 	else{
