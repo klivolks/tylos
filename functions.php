@@ -243,19 +243,17 @@ function room_delete(){
 
 }
 function room_edit(){
-
-$input = new input;
-$db = new db;
-$id =$input->post('id');
-$name=$input->post('name');
-$type=$input->post('type');
-$rent=$input->post('rent');
-$description=$input->post('description');
-$occupancy=$input->post('occupancy');
-$data = array('room_name'=>$name,'room_type'=>$type,'rent'=>$rent,'description'=>$description,'max_occupancy'=>$occupancy);
-$db->update('rooms',$data,$id);	
-header('Location: /admin/all-rooms/?msg=1');
-
+	$input = new input;
+	$db = new db;
+	$id =$input->post('id');
+	$name=$input->post('name');
+	$type=$input->post('type');
+	$rent=$input->post('rent');
+	$description=$input->post('description');
+	$occupancy=$input->post('occupancy');
+	$data = array('room_name'=>$name,'room_type'=>$type,'rent'=>$rent,'description'=>$description,'max_occupancy'=>$occupancy);
+	$db->update('rooms',$data,$id);	
+	header('Location: /admin/all-rooms/?msg=1');
 }
 function add_events(){
 
@@ -284,19 +282,18 @@ function event_delete(){
 
 }
 function event_edit(){
-
-$input = new input;
-$db = new db;
-$id =$input->post('id');
-$name=$input->post('name');
-$venue=$input->post('venue');
-$starting=$input->post('starting');
-$ending=$input->post('ending');
-$descripton=$input->post('descripton');
-$seats=$input->post('seats');
-$data = array('event_name'=>$name,'venue'=>$venue,'event_starting'=>$starting,'event_ending'=>$ending,'description'=>$descripton,'seats'=>$seats);
-$db->update('events',$data,$id);	
-header('Location: /admin/all-events/?msg=1');
+	$input = new input;
+	$db = new db;
+	$id =$input->post('id');
+	$name=$input->post('name');
+	$venue=$input->post('venue');
+	$starting=$input->post('starting');
+	$ending=$input->post('ending');
+	$descripton=$input->post('descripton');
+	$seats=$input->post('seats');
+	$data = array('event_name'=>$name,'venue'=>$venue,'event_starting'=>$starting,'event_ending'=>$ending,'description'=>$descripton,'seats'=>$seats);
+	$db->update('events',$data,$id);	
+	header('Location: /admin/all-events/?msg=1');
 
 }
 function about_us(){
@@ -318,44 +315,44 @@ function about_us(){
 	$data = array('content'=>$content);
 	$db->update('pages',$data,$id);	
 	}
-header('Location: /admin/about-us/?msg=1');
+	header('Location: /admin/about-us/?msg=1');
 }
 function inventory_add(){
-$input = new input;
-$db = new db;
-$date =$input->post('date');
-$price =$input->post('price');
-$date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
-$court_id =$input->post('court_id');
-$time =$input->post('time');
-$data = array('court_id'=>$court_id,'date'=>$date,'time'=>$time,'price'=>$price,'status'=>1);
-$db->insert('court_inventory',$data);	
-header('Location: /admin/court/?msg=1');
+	$input = new input;
+	$db = new db;
+	$date =$input->post('date');
+	$price =$input->post('price');
+	$date = date('Y-m-d', strtotime(str_replace('-', '/', $date)));
+	$court_id =$input->post('court_id');
+	$time =$input->post('time');
+	$data = array('court_id'=>$court_id,'date'=>$date,'time'=>$time,'price'=>$price,'status'=>1);
+	$db->insert('court_inventory',$data);	
+	header('Location: /admin/court/?msg=1');
 }
 function gallery_delete(){
-$input = new input;
-$db = new db;
-$id =$_GET['id'];
-$db->delete('gallery',$id);	
-header('Location: /admin/gallery/');
+	$input = new input;
+	$db = new db;
+	$id =$input->get('id');
+	$db->delete('gallery',$id);	
+	header('Location: /admin/gallery/');
 }
 function court_delete(){
-$input = new input;
-$db = new db;
-$id =$_GET['id'];
-$db->delete('courts',$id);	
-header('Location: /admin/court/');
+	$input = new input;
+	$db = new db;
+	$id =$_GET['id'];
+	$db->delete('courts',$id);	
+	header('Location: /admin/court/');
 }
 function edit(){
-$input = new input;
-$db = new db;
-$id =$input->post('id');
-$name=$input->post('name');
-$tagline=$input->post('tagline');
-$description=$input->post('description');
-$data = array('court_name'=>$name,'tagline'=>$tagline,'description'=>$description);
-$db->update('courts',$data,$id);	
-header('Location: /admin/court/?msg=2');
+	$input = new input;
+	$db = new db;
+	$id =$input->post('id');
+	$name=$input->post('name');
+	$tagline=$input->post('tagline');
+	$description=$input->post('description');
+	$data = array('court_name'=>$name,'tagline'=>$tagline,'description'=>$description);
+	$db->update('courts',$data,$id);	
+	header('Location: /admin/court/?msg=2');
 }
 function add_to_cart(){
 	$input = new input;
@@ -367,6 +364,20 @@ function add_to_cart(){
 		$timeslot = $input->post('timeSlot');
 		$data = array('user'=>$user, 'timeslot'=>$timeslot, 'status'=>0);
 		$booking_id = $db->insert('court_booking',$data);
+		$booking_no = "TY"."U".$user."T".$booking_type."D".$booking_id;
+		$booking_no = substr($booking_no,0,12);
+		$data = array('booking_id'=>$booking_id, 'booking_no'=>$booking_no, 'booking_type'=>$booking_type, 'status'=>0);
+		$invoice_id = $db->insert('invoice',$data);
+		$_SESSION['invoice'] = $invoice_id;
+		redirect('/booking/payment/');
+	}
+	elseif($booking_type=='room'){
+		$booking_type=2;
+		$room_id = $input->post('room');
+		$check_in = date('Y-m-d',strtotime($input->post('check_in')));
+		$check_out = date('Y-m-d',strtotime($input->post('check_out')));
+		$data = array('room_id'=>$room_id, 'user'=>$user, 'expected_check_in'=>$check_in,  'expected_check_out'=>$check_out, 'persons'=>$input->post('persons'), 'status'=>0);
+		$booking_id = $db->insert('room_booking',$data);
 		$booking_no = "TY"."U".$user."T".$booking_type."D".$booking_id;
 		$booking_no = substr($booking_no,0,12);
 		$data = array('booking_id'=>$booking_id, 'booking_no'=>$booking_no, 'booking_type'=>$booking_type, 'status'=>0);
@@ -386,6 +397,10 @@ function pay_at_court(){
 	$data = array('status'=>1);
 	if($booking_type=='1'){
 		$db->update('court_booking',$data,$booking_id);
+		redirect('/booking/success/');
+	}
+	elseif($booking_type=='2'){
+		$db->update('room_booking',$data,$booking_id);
 		redirect('/booking/success/');
 	}
 	else{

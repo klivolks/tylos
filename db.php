@@ -2,7 +2,7 @@
 class db{
 	function connect(){
 		date_default_timezone_set('Asia/Kolkata');
-		$con=mysqli_connect("localhost","root","","tylos");
+		$con=mysqli_connect("localhost","root","iamadventurer","tylos");
 		return $con;
 	}
 	function get($table,$columns,$condition){
@@ -48,13 +48,14 @@ class db{
 		}
 		$con=$this->connect();
 		$now=date("Y-m-d H:i:s");
-		$sql="UPDATE $table SET $string,`updated_at`='$now' WHERE id=$id";
+		$sql="UPDATE $table SET $string,`updated_at`='$now' WHERE `id`=$id";
 		$sql=mysqli_query($con,$sql);
 	}
 	function delete($table,$id){
 		$con=$this->connect();
-		$sql="DELETE FROM $table WHERE id=$id";
+		$sql="DELETE FROM $table WHERE `id`=$id";
 		$sql=mysqli_query($con,$sql);
 	}
+	
 }
 ?>

@@ -52,6 +52,62 @@
 				</div>
 				<?php
 				}
+				elseif($booking_type=='room'){
+					$room_id = $input->post('room');
+					$data = $db->get('rooms','room_name,rent',"WHERE `id` = '$room_id'");
+					$check_in = $input->post('check_in');
+					$check_out = $input->post('check_out');
+					$no_of_days = ((strtotime($check_out)-strtotime($check_in))/(60*60*24))+1;
+					$rent = $data['result'][0][1]*$no_of_days;
+					?>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Room : </div>
+						<div class="col s8">
+							<?php echo $data['result'][0][0]; ?>
+							<input type="hidden" name="room" value="<?php echo $room_id; ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Check In : </div>
+						<div class="col s8">
+							<?php echo date('d M Y',strtotime($check_in)); ?>
+							<input type="hidden" name="check_in" value="<?php echo $check_in; ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Check Out : </div>
+						<div class="col s8">
+							<?php echo date('d M Y',strtotime($check_out)); ?>
+							<input type="hidden" name="check_out" value="<?php echo $check_out; ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Number of Persons : </div>
+						<div class="col s8">
+							<?php echo $input->post('persons'); ?>
+							<input type="hidden" name="persons" value="<?php echo $input->post('persons'); ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Rent per day : </div>
+						<div class="col s8">
+							<?php echo $data['result'][0][1]; ?>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Number of Days : </div>
+						<div class="col s8">
+							<?php echo $no_of_days; ?>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Total Rent : </div>
+						<div class="col s8">
+							<?php echo $rent; ?>
+						</div>
+					</div>
+					<?php
+				}
 				if(isset($_SESSION['member'])){
 					$user_id = $_SESSION['member'];
 					$data = $db->get('members','full_name,email,phone_no',"WHERE `id` = '$user_id'");

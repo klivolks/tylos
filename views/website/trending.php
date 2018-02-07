@@ -5,127 +5,40 @@
 		</div>
 	</div>
 	<div class="row trending-wrap">
+	<?php
+				$db = new db;
+				$today = date('Y-m-d');
+				$data = $db->get('events','`id`,`featured_img`,`event_name`,`event_starting`,`event_ending`,`venue`',"WHERE `event_ending` >= '$today' ORDER BY `id` DESC LIMIT 0,6");
+				
+			?>
 		<div class="MS-content">
+			<?php
+			foreach($data['result'] as $key => $rw){
+				?>
 			<div class="col l2 s6 item">
-				<div class="event-wrap">
+				<a href="/event/<?php echo $rw[0] ?>/"><div class="event-wrap">
 					<div class="event-poster">
-						<img src="/img/events/event1.jpg" class="event-img">
+						<img src="/img/events/<?php echo $rw[1]; ?>" class="event-img">
 					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_half</i> <i class="material-icons">star_border</i>
+					<div class="event-star" style="font-weight: bold; padding-left: 15px; color: white; font-size: 24px;">
+						<?php echo $rw[2]; ?>
+						<!--<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_half</i> <i class="material-icons">star_border</i>-->
 					</div>
 					<div class="event-details">
 						<div class="row">
 							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 25 - Jan 5</span>
+								<i class="material-icons left">event</i> <span><?php echo date('d M',strtotime($rw[3])); ?> - <?php echo date('d M',strtotime($rw[4])); ?></span>
 							</div>
 							<div class="col s5">
 								<i class="material-icons left">place</i> <span>Court 5</span>
 							</div>
 						</div>
 					</div>
+				</div></a>
 				</div>
-			</div>
-			<div class="col l2 s6 item">
-				<div class="event-wrap">
-					<div class="event-poster">
-						<img src="/img/events/event2.jpg" class="event-img">
-					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_border</i>
-					</div>
-					<div class="event-details">
-						<div class="row">
-							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 20 - Dec 25</span>
-							</div>
-							<div class="col s5">
-								<i class="material-icons left">place</i> <span>Court 5</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col l2 s6 item">
-				<div class="event-wrap">
-					<div class="event-poster">
-						<img src="/img/events/event3.jpg" class="event-img">
-					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_half</i>
-					</div>
-					<div class="event-details">
-						<div class="row">
-							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 25 - Jan 5</span>
-							</div>
-							<div class="col s5">
-								<i class="material-icons left">place</i> <span>Court 6</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col l2 s6 item">
-				<div class="event-wrap">
-					<div class="event-poster">
-						<img src="/img/events/event1.jpg" class="event-img">
-					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_half</i> <i class="material-icons">star_border</i>
-					</div>
-					<div class="event-details">
-						<div class="row">
-							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 25 - Jan 5</span>
-							</div>
-							<div class="col s5">
-								<i class="material-icons left">place</i> <span>Court 5</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col l2 s6 item">
-				<div class="event-wrap">
-					<div class="event-poster">
-						<img src="/img/events/event2.jpg" class="event-img">
-					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_border</i>
-					</div>
-					<div class="event-details">
-						<div class="row">
-							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 20 - Dec 25</span>
-							</div>
-							<div class="col s5">
-								<i class="material-icons left">place</i> <span>Court 5</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col l2 s6 item">
-				<div class="event-wrap">
-					<div class="event-poster">
-						<img src="/img/events/event3.jpg" class="event-img">
-					</div>
-					<div class="event-star">
-						<i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star</i> <i class="material-icons">star_half</i>
-					</div>
-					<div class="event-details">
-						<div class="row">
-							<div class="col s7">
-								<i class="material-icons left">event</i> <span>Dec 25 - Jan 5</span>
-							</div>
-							<div class="col s5">
-								<i class="material-icons left">place</i> <span>Court 6</span>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+				<?php
+				}
+			?>
 		</div>
 	</div>
 	<a onClick="prev_slide()" href="#"><div class="left-wrap valign-wrapper left">

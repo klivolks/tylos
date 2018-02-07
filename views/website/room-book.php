@@ -13,7 +13,7 @@ $data = $db->get('room_booking','count(*)',"WHERE ($check_in <= `expected_check_
 	<div class="container">
 		<div class="row">
 			<div class="grey lighten-2 col l8 push-l2 s12 login-box">
-				<h5>Choose available time slot</h5>
+				<h5>Confirm Room</h5>
 			</div>
 		</div>
 		<div class="row">
@@ -34,6 +34,10 @@ $data = $db->get('room_booking','count(*)',"WHERE ($check_in <= `expected_check_
 						<input type="text" value="<?php echo date('d M, Y',strtotime($check_out)); ?>" disabled>
 						<input type="hidden" name="check_out" value="<?php echo $check_out; ?>">
 						<label>Check in</label>
+					</div>
+					<div class="col s12 input-field">
+						<input type="text" name="persons" value="1">
+						<label>No. of Persons</label>
 					</div>
 					<div class="col s12 input-field">
 						<input type="text" value="<?php echo $rent; ?>" disabled>

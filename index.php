@@ -380,11 +380,6 @@ if($plugin=='admin'){
 		$load->view('admin/event-edit');
 		$load->view('admin/footer');
 	}
-
-
-	
-	
-
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');
@@ -463,7 +458,7 @@ elseif($plugin=='room-book'){
 	}
 	$room = $param[2];
 	if($input->post('check_in')==''||$input->post('check_out')==''){
-		redirect('/court/'.$room.'/');
+		redirect('/room/'.$room.'/');
 	}
 	$load->view('website/meta');
 	$load->view('website/common-header');
@@ -475,15 +470,23 @@ elseif($plugin=='booking'){
 	if($step=='confirm'){
 		$input = new input;
 		$court = $input->post('court');
-		if($input->post('timeSlot')==''){
-			redirect('/court/'.$court.'/');
+		if($court!=''){
+			if($input->post('timeSlot')==''){
+				redirect('/court/'.$court.'/');
+			}
+		}
+		$room = $input->post('room');
+		if($room!=''){
+			if($input->post('check_in')==''||$input->post('check_out')==''){
+				redirect('/room/'.$room.'/');
+			}
 		}
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/confirm');
 		$load->view('website/footer');
 	}
-	if($step=='payment'){
+	elseif($step=='payment'){
 		if(!isset($_SESSION['invoice'])){
 			redirect('/');
 		}
@@ -492,7 +495,7 @@ elseif($plugin=='booking'){
 		$load->view('website/invoice');
 		$load->view('website/footer');
 	}
-	if($step=='success'){
+	elseif($step=='success'){
 		if(!isset($_SESSION['invoice'])){
 			redirect('/');
 		}
@@ -500,6 +503,9 @@ elseif($plugin=='booking'){
 		$load->view('website/common-header');
 		$load->view('website/success');
 		$load->view('website/footer');
+	}
+	else{
+		redirect('/not-found/');
 	}
 }
 elseif($plugin=='gallery'){
@@ -540,6 +546,12 @@ elseif($plugin=='search'){
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/court-search');
+		$load->view('website/footer');
+	}
+	elseif($sub_section=='rooms'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/room-search');
 		$load->view('website/footer');
 	}
 	else{
