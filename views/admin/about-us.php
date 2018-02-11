@@ -1,9 +1,7 @@
 <script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
 <?php
 $db = new db;
-$data = $db->get("pages","count(*),content","where `page`='about-us'"); 
-$check=$data['result'][0][0];
-
+$data = $db->get("pages","content","where `page`='about-us'"); 
 ?>
 <script>
     tinymce.init({
@@ -39,16 +37,14 @@ $check=$data['result'][0][0];
 <form method="post" action="/admin/add/about-us/" enctype="multipart/form-data">
 <div class="row">
     <form class="col s12">
-      <div class="row">
     
     <div class="row">
    	  <div class="input-field col s12">
-          <textarea id="textarea1" value="" name="content" class="materialize-textarea"><?php echo $data['result'][0][1];  ?></textarea>
-        
+          <textarea id="textarea1" name="content" class="materialize-textarea">
+          <?php 
+			  if(isset($data['result'])){ echo $data['result'][0][0]; }  ?>
+          </textarea>
       </div>
-    </div>
-
-     
     </div>
   </div>
  <div class="row">

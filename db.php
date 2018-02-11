@@ -56,6 +56,9 @@ class db{
 		$sql="DELETE FROM $table WHERE `id`=$id";
 		$sql=mysqli_query($con,$sql);
 	}
-	
+	function escape($string){
+		$string = mysqli_real_escape_string($this->connect(),$string);
+		return $string;
+	}
 }
 ?>

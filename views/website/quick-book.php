@@ -62,13 +62,13 @@
 					foreach($data['result'] as $key => $rw):
 				?>
 				<div class="col s12 book-item">
-					<form action="/seat-book/<?php echo $rw['id']; ?>/" method="post">
+					<form action="/ticket-book/<?php echo $rw['id']; ?>/" method="post">
 						<div class="col l2 s12">
-							<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date" required>
+							<input type="number" class="validate" name="noOfSeats" placeholder="No. of Seats" required>
 						</div>
 						<a href="/event/<?php echo $rw['id']; ?>"><div class="col l8 s12 item-detail">
 							<?php echo $rw['event_name']  ?><br>
-							<small><?php echo $rw['venue'].', '.date('d/m/Y',strtotime($rw['event_starting'])).'-'.date('d/m/Y',strtotime($rw['event_ending']));  ?></small>
+							<small><?php echo $rw['venue'].', '.date('d M',strtotime($rw['event_starting'])).' - '.date('d M',strtotime($rw['event_ending']));  ?></small>
 						</div></a>
 						<div class="col l2 s12 right-align">
 							<button type="submit" class="book-btn">Book Now</button>

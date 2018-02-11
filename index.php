@@ -426,60 +426,137 @@ elseif($plugin=='signin'){
 	$load->view('website/footer');
 }
 elseif($plugin=='court'){
-	$load->view('website/meta');
-	$load->view('website/common-header');
-	$load->view('website/court',$param[2]);
-	$load->view('website/footer');
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('courts','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
+	}
+	else{
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/court',$db->escape($param[2]));
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='room'){
-	$load->view('website/meta');
-	$load->view('website/common-header');
-	$load->view('website/room',$param[2]);
-	$load->view('website/footer');
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('rooms','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
+	}
+	else{
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/room',$db->escape($param[2]));
+		$load->view('website/footer');
+	}
+}
+elseif($plugin=='event'){
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('events','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
+	}
+	else{
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/event',$db->escape($param[2]));
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='court-book'){
 	$input = new input;
 	if(!isset($_SESSION['member'])){
 		redirect('/signin/');
 	}
-	$court = $param[2];
-	if($input->post('dateOfBooking')==''){
-		redirect('/court/'.$court.'/');
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('courts','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
 	}
-	$load->view('website/meta');
-	$load->view('website/common-header');
-	$load->view('website/court-book',$param[2]);
-	$load->view('website/footer');
+	else{
+		$court = $db->escape($param[2]);
+		if($input->post('dateOfBooking')==''){
+			redirect('/court/'.$court.'/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/court-book',$param[2]);
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='room-book'){
 	$input = new input;
 	if(!isset($_SESSION['member'])){
 		redirect('/signin/');
 	}
-	$room = $param[2];
-	if($input->post('check_in')==''||$input->post('check_out')==''){
-		redirect('/room/'.$room.'/');
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('rooms','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
 	}
-	$load->view('website/meta');
-	$load->view('website/common-header');
-	$load->view('website/room-book',$param[2]);
-	$load->view('website/footer');
+	else{
+		$room = $db->escape($param[2]);
+		if($input->post('check_in')==''||$input->post('check_out')==''){
+			redirect('/room/'.$room.'/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/room-book',$db->escape($param[2]));
+		$load->view('website/footer');
+	}
+}
+elseif($plugin=='ticket-book'){
+	$input = new input;
+	if(!isset($_SESSION['member'])){
+		redirect('/signin/');
+	}
+	$db = new db;
+	$id = $db->escape($param[2]);
+	$data = $db->get('events','count(*)',"WHERE `id` = '$id'");
+	if($data['result'][0][0]==0){
+		redirect('/not-found/');
+	}
+	else{
+		$event = $db->escape($param[2]);
+		if($input->post('noOfSeats')==''||$input->post('noOfSeats')<=0){
+			redirect('/event/'.$event.'/');
+		}
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/ticket-book',$db->escape($param[2]));
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='booking'){
 	$step=$param[2];
 	if($step=='confirm'){
 		$input = new input;
 		$court = $input->post('court');
+		$room = $input->post('room');
+		$event = $input->post('event');
 		if($court!=''){
 			if($input->post('timeSlot')==''){
-				redirect('/court/'.$court.'/');
+				redirect('/booking/failed/');
 			}
 		}
-		$room = $input->post('room');
-		if($room!=''){
+		elseif($room!=''){
 			if($input->post('check_in')==''||$input->post('check_out')==''){
-				redirect('/room/'.$room.'/');
+				redirect('/booking/failed/');
 			}
+		}
+		elseif($event!=''){
+			if($input->post('noOfSeats')==''||$input->post('noOfSeats')<1){
+				redirect('/booking/failed/');
+			}
+		}
+		else{
+			redirect('/booking/failed/');
 		}
 		$load->view('website/meta');
 		$load->view('website/common-header');
@@ -488,7 +565,7 @@ elseif($plugin=='booking'){
 	}
 	elseif($step=='payment'){
 		if(!isset($_SESSION['invoice'])){
-			redirect('/');
+			redirect('/booking/failed/');
 		}
 		$load->view('website/meta');
 		$load->view('website/common-header');
@@ -497,11 +574,17 @@ elseif($plugin=='booking'){
 	}
 	elseif($step=='success'){
 		if(!isset($_SESSION['invoice'])){
-			redirect('/');
+			redirect('/booking/failed/');
 		}
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/success');
+		$load->view('website/footer');
+	}
+	elseif($step=='failed'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/failed');
 		$load->view('website/footer');
 	}
 	else{
@@ -513,6 +596,46 @@ elseif($plugin=='gallery'){
 	$load->view('website/common-header');
 	$load->view('website/gallery');
 	$load->view('website/footer');
+}
+elseif($plugin=='about-us-tylos'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/about');
+	$load->view('website/footer');
+}
+elseif($plugin=='contact-us-tylos'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/contact');
+	$load->view('website/footer');
+}
+elseif($plugin=='blog'){
+	$db = new db;
+	$post = $db->escape($param[2]);
+	if($post!=''||$post!=NULL){
+		$data = $db->get('news',"count(*),title","WHERE `id` = '$post'");
+		if($data['result'][0][0]!=0){
+			$slug = strtolower(preg_replace('#[ -]+#', '-', $data['result'][0][1]));
+			if($slug==$param[3]){
+				$load->view('website/meta');
+				$load->view('website/common-header');
+				$load->view('website/post',$db->escape($param[2]));
+				$load->view('website/footer');
+			}
+			else{
+				redirect('/not-found/');
+			}
+		}
+		else{
+			redirect('/not-found/');
+		}
+	}
+	else{
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/blog');
+		$load->view('website/footer');
+	}
 }
 elseif($plugin=='account'){
 	$section = $param[2];
@@ -552,6 +675,12 @@ elseif($plugin=='search'){
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/room-search');
+		$load->view('website/footer');
+	}
+	elseif($sub_section=='events'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/event-search');
 		$load->view('website/footer');
 	}
 	else{

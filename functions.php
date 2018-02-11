@@ -301,15 +301,13 @@ function about_us(){
 	$db=new db;
 	$input=new input;
 	$user = $_SESSION['logged_admin'];
-	$data = $db->get("pages","count(*),id","where `page`='about-us'"); 
-	$check=$data['result'][0][0];
-	$id=$data['result'][0][1];
+	$data = $db->get("pages","id","where `page`='about-us'"); 
+	$id=$data['result'][0][0];
 	$content=$input->post('content');
-	if($check==0){
+	if(!isset($data['result'])){
 	$page="about-us";
 	$data = array('page'=>$page,'content'=>$content,'status'=>1);
 	$db->insert('pages',$data);
-	
 	}
 	else{
 	$data = array('content'=>$content);
@@ -385,6 +383,19 @@ function add_to_cart(){
 		$_SESSION['invoice'] = $invoice_id;
 		redirect('/booking/payment/');
 	}
+	elseif($booking_type=='event'){
+		$booking_type=3;
+		$event_id = $input->post('event');
+		$no_of_seats = $input->post('noOfSeats');
+		$data = array('event'=>$event_id, 'user'=>$user, 'no_of_seats'=>$no_of_seats, 'status'=>0);
+		$booking_id = $db->insert('event_tickets',$data);
+		$booking_no = "TY"."U".$user."T".$booking_type."D".$booking_id;
+		$booking_no = substr($booking_no,0,12);
+		$data = array('booking_id'=>$booking_id, 'booking_no'=>$booking_no, 'booking_type'=>$booking_type, 'status'=>0);
+		$invoice_id = $db->insert('invoice',$data);
+		$_SESSION['invoice'] = $invoice_id;
+		redirect('/booking/payment/');
+	}
 }
 function pay_at_court(){
 	$invoice = $_SESSION['invoice'];
@@ -401,6 +412,10 @@ function pay_at_court(){
 	}
 	elseif($booking_type=='2'){
 		$db->update('room_booking',$data,$booking_id);
+		redirect('/booking/success/');
+	}
+	elseif($booking_type=='3'){
+		$db->update('event_tickets',$data,$booking_id);
 		redirect('/booking/success/');
 	}
 	else{

@@ -108,6 +108,58 @@
 					</div>
 					<?php
 				}
+				elseif($booking_type=='event'){
+					$event_id = $input->post('event');
+					$no_of_seats = $input->post('noOfSeats');
+					$data = $db->get('events','event_name,ticket_charge,venue,event_starting,event_ending',"WHERE `id` = '$event_id'");
+					$total = $no_of_seats*$data['result'][0][1];
+					?>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Event : </div>
+						<div class="col s8">
+							<?php echo $data['result'][0][0]; ?>
+							<input type="hidden" name="event" value="<?php echo $event_id; ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Venue : </div>
+						<div class="col s8">
+							<?php echo $data['result'][0][2]; ?>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Ticket Charge : </div>
+						<div class="col s8">
+							<?php echo $data['result'][0][1]; ?>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">No. Of Seats : </div>
+						<div class="col s8">
+							<?php echo $no_of_seats; ?>
+							<input type="hidden" name="noOfSeats" value="<?php echo $no_of_seats; ?>">
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Total Rent : </div>
+						<div class="col s8">
+							<strong><?php echo $total; ?></strong>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Starting Date : </div>
+						<div class="col s8">
+							<?php echo date('d M Y',strtotime($data['result'][0][3])); ?>
+						</div>
+					</div>
+					<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Ending Date : </div>
+						<div class="col s8">
+							<?php echo date('d M Y',strtotime($data['result'][0][4])); ?>
+						</div>
+					</div>
+					<?php
+				}
 				if(isset($_SESSION['member'])){
 					$user_id = $_SESSION['member'];
 					$data = $db->get('members','full_name,email,phone_no',"WHERE `id` = '$user_id'");

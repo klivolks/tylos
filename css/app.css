@@ -47,6 +47,10 @@ strong{
 .material-icons.md-48{ 
 	font-size: 48px;
 }
+.featured-img{
+	max-height: 300px;
+	overflow: hidden;
+}
 
 /*header*/
 .header{
@@ -578,4 +582,29 @@ ul.features{
 .account-menu li.active,.account-menu li:hover{
 	background: #f7f7f7;
 	border-left: 2px solid #b13e49;
+}
+
+/*blog*/
+.post-item{
+	padding: 0px;
+	border:1px solid #CCCCCC;
+}
+.post-item img{
+	width: 100%;
+}
+.post-item p{
+	padding: 0px 15px !important;
+}
+.post-item:hover{
+	box-shadow: 0px 0px 5px 0px #CCCCCC;
+}
+.post-item span{
+	font-weight: bold;
+	color: #b13e49;
+}
+.blog-content p:first-of-type:first-letter{
+	font-size: 36px !important;
+	font-weight: 700 !important;
+	float: left;
+	padding:10px;
 }

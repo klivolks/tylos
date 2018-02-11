@@ -14,7 +14,7 @@
 					Your reservation was confirmed successfully and your Payment is being processed.
 				</div>
 				<div class="col s12 center-align" style="margin-bottom: 25px;">
-					Booking ID : <strong class="red-text text-darken-4"><?php echo $data['result'][0][0]; ?></strong>
+					Booking ID : <a href="/booking/details/<?php echo $data['result'][0][0]; ?>/"><strong><?php echo $data['result'][0][0]; ?></strong></a>
 				</div>
 			</div>
 		</div>
