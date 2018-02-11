@@ -649,6 +649,30 @@ elseif($plugin=='account'){
 			$load->view('website/my-profile');
 			$load->view('website/footer');
 		}
+		elseif($section=='history'){
+			$sub_section = $param[3];
+			if($sub_section=='court'){
+				$load->view('website/meta');
+				$load->view('website/common-header');
+				$load->view('website/court-booking');
+				$load->view('website/footer');
+			}
+			elseif($sub_section=='room'){
+				$load->view('website/meta');
+				$load->view('website/common-header');
+				$load->view('website/room-booking');
+				$load->view('website/footer');
+			}
+			elseif($sub_section=='event'){
+				$load->view('website/meta');
+				$load->view('website/common-header');
+				$load->view('website/event-tickets');
+				$load->view('website/footer');
+			}
+			else{
+				redirect('/not-found/');
+			}
+		}
 		else{
 			$load->view('website/meta');
 			$load->view('website/common-header');
