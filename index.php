@@ -587,6 +587,18 @@ elseif($plugin=='booking'){
 		$load->view('website/failed');
 		$load->view('website/footer');
 	}
+	elseif($step=='details'){
+		$db = new db;
+		$booking_no = $db->escape($param[3]);
+		$data = $db->get('invoice','count(*)',"WHERE booking_no = '$booking_no'");
+		if($data['result'][0][0]!=1){
+			redirect('/not-found/');
+		}
+		else{
+		$load->view('website/meta');
+		$load->view('website/print',$booking_no);
+		}
+	}
 	else{
 		redirect('/not-found/');
 	}
@@ -647,6 +659,12 @@ elseif($plugin=='account'){
 			$load->view('website/meta');
 			$load->view('website/common-header');
 			$load->view('website/my-profile');
+			$load->view('website/footer');
+		}
+		elseif($section=='players'){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/my-player');
 			$load->view('website/footer');
 		}
 		elseif($section=='history'){

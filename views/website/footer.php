@@ -4,16 +4,22 @@
 			<div class="col l3 s12 sub-footer-col">
 				<img src="/img/logo.png" class="responsive-img"><br>
 				<p style="text-align: justify;">Tylos academy for games &amp; recreation private limited is an unlisted private company incorporated on 23 march, 2015. The registered office of the company is at ramkripa, ourambath house Velappaya p.o., Thrissur, kerala.</p>
-				<p><a href="#"><div class="social-icons fb"></div></a> <a href="#"><div class="social-icons twitter"></div></a> <a href="#"><div class="social-icons gplus"></div></a> <a href="#"><div class="social-icons instagram"></div></a> <a href="#"><div class="social-icons youtube"></div></a></p>
+				<a href="https://www.facebook.com/TYLOS-Academy-387548051664078/"><div class="social-icons fb"></div></a> <a href="#"><div class="social-icons twitter"></div></a> <a href="#"><div class="social-icons gplus"></div></a> <a href="#"><div class="social-icons instagram"></div></a> <a href="#"><div class="social-icons youtube"></div></a>
 			</div>
 			<div class="col l3 s12 sub-footer-col">
 				<h6 class="white-text">Latest News</h6>
 				<ul class="news">
-					<li><a href="#">Djokovic adds surprising member to 2018 team</a></li>
-					<li><a href="#">Tennis SA appoints new Fed Cup captain</a></li>
-					<li><a href="#">Meyer Timber finishes on top in 'social tennis' grand final</a></li>
-					<li><a href="#">New rules, innovations at maiden NextGen tennis competition</a></li>
-					<li><a href="#">Former two-sport standout picks tennis,</a></li>
+					<?php 
+					$db = new db; 
+					$data = $db->get('news','title,`id`',"WHERE status = 1 ORDER BY `id` DESC");
+					foreach($data['result'] as $key=>$rw){
+						$slug = strtolower($rw[0]);
+					$slug = preg_replace('#[ -]+#', '-', $slug);
+					?>
+					<li><a href="/blog/<?php echo $rw[1]; ?>/<?php echo $slug ?>"><?php echo $rw[0]; ?></a></li>
+					<?php
+					}
+					?>
 				</ul>
 			</div>
 			<div class="col l3 s12 sub-footer-col">
@@ -55,7 +61,7 @@
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
 <script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>
-<script type="text/javascript" src="/js/app.js?v=0.0.26"></script>
+<script type="text/javascript" src="/js/app.js?v=0.0.27"></script>
 <script type="text/javascript" src="/js/multislider.min.js"></script>
 </body>
 </html>

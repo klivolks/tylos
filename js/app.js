@@ -12,6 +12,15 @@ $(function(){
     close: 'Ok',
     closeOnSelect: false
   });
+	var yesterday = new Date((new Date()).valueOf()-1000*60*60*24);
+	$('.dob').pickadate({
+    selectMonths: true,
+    selectYears: 15, 
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false
+  });
 	$('.materialboxed').materialbox();
 	$('body').css('display', 'none');
 	$('body').fadeIn(200);

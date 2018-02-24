@@ -9,8 +9,8 @@
 					<li><a href="/search/court/">Courts</a></li>
 					<li><a href="/search/rooms/">Rooms</a></li>
 					<li><a href="/search/events/">Events</a></li>
-					<li><a href="/teams/">Teams</a></li>
-					<li><a href="/players/">Players</a></li>
+					<!--<li><a href="/teams/">Teams</a></li>
+					<li><a href="/players/">Players</a></li>-->
 				</ul>
 			</div>
 			<div class="col s1 right-align notification-icon">

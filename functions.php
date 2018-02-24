@@ -103,9 +103,14 @@ function gallery_upload(){
 	$input = new input;
 	$db = new db;
 	$file = $input->image('gallery','gallery_img');
-	$data = array('image'=>$file,'status'=>1);
-	$db->insert('gallery',$data);
-	header('Location: /admin/gallery/');
+	if($file!=0){
+		$data = array('image'=>$file,'status'=>1);
+		$db->insert('gallery',$data);
+		header('Location: /admin/gallery/?msg=1');
+	}
+	else{
+		header('Location: /admin/gallery/?msg=0');
+	}
 }
 function add_member(){
 	$db = new db;

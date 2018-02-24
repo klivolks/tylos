@@ -12,8 +12,8 @@ $event_bookings = $data['result'];
 					<a href="/account/history/court/"><li>Court Bookings</li></a>
 					<a href="/account/history/room/"><li>Room Bookings</li></a>
 					<a href="/account/history/event/"><li class="active">Event Bookings</li></a>
-					<a href="/account/players/"><li>Player Profile</li></a>
-					<a href="/account/team/"><li>Team</li></a>
+					<!--<a href="/account/players/"><li>Player Profile</li></a>
+					<a href="/account/team/"><li>Team</li></a>-->
 					<a href="/account/profile/"><li>My Profile</li></a>
 				</ul>
 			</div>
