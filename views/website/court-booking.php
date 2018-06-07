@@ -1,6 +1,8 @@
 <?php $db = new db; $member = $_SESSION['member']; 
 $data = $db->get('court_booking','booking_no',"INNER JOIN invoice on `invoice`.`booking_id`=`court_booking`.`id` WHERE user = '$member' AND booking_type = 1");
 $court_bookings = $data['result'];
+$data = $db->get('court_long_booking','booking_no',"INNER JOIN invoice on `invoice`.`booking_id`=`court_long_booking`.`id` WHERE user = '$member' AND booking_type = 4");
+$court_long_bookings = $data['result'];
 ?>
 <section class="login white">
 	<div class="container">
@@ -23,6 +25,13 @@ $court_bookings = $data['result'];
 				<div class="col s12 login-box">
 					<div class="col l4 s12">
 						<?php foreach($court_bookings as $key => $rw){ ?>
+						<p>
+						<a href="/booking/details/<?php echo $rw[0] ?>/"><?php echo $rw[0]; ?></a></p>
+						<hr />
+						<?php } ?>
+					</div>
+					<div class="col l4 s12">
+						<?php foreach($court_long_bookings as $key => $rw){ ?>
 						<p>
 						<a href="/booking/details/<?php echo $rw[0] ?>/"><?php echo $rw[0]; ?></a></p>
 						<hr />

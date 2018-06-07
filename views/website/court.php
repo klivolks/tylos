@@ -40,11 +40,12 @@ if($data['result']!=''){
 		<div class="container">
 			<div class="row">
 				<div class="col l6 m6 s12 center-align">
-					<img src="/img/tennis-court-flooring.jpg" class="responsive-img">
+					<img src="/img/Court_profile_Reserve_court_Left_banner.jpg" class="responsive-img">
 				</div>
 				<div class="col l6 m6 s12">
 					<p><strong>Reserve the clay court with our advanced booking system.</strong></p>
-					<p>Tennis players with an eye on competing professionally will want to practice and play on different types of court. Tylos has the most comfortable clay court surfaces and it is completely safe for all weather changes.</p>
+					<p>Badminton
+		 players with an eye on competing professionally will want to practice and play on different types of court. Tylos has the most comfortable clay court surfaces and it is completely safe for all weather changes.</p>
 					<p>Our Advanced booking system has made simple and easy to book courts.</p>
 					<form action="/court-book/<?php echo $rw['id']; ?>/" method="post" onSubmit="return verify_input('dateOfBooking')">
 					<p id="msg"></p>

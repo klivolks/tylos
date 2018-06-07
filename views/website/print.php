@@ -13,7 +13,7 @@ if($invoice->booking_type==1){
 	$qty = 1;
 }
 elseif($invoice->booking_type==2){
-	$data = $db->get('room_booking','full_name,email,phone_no,expected_check_in,expected_check_out,persons,room_id',"INNER JOIN members on `room_booking`.`user` = `members`.`id`");
+	$data = $db->get('room_booking','full_name,email,phone_no,expected_check_in,expected_check_out,persons,room_id',"INNER JOIN members on `room_booking`.`user` = `members`.`id` WHERE `room_booking`.`id` = '$invoice->booking_id'");
 	$booking = (object)$data['result'][0];
 	$data = $db->get('rooms','room_name,room_type,rent',"WHERE `id` = '$booking->room_id'");
 	$room = (object)$data['result'][0];
@@ -25,7 +25,7 @@ elseif($invoice->booking_type==2){
 	}
 }
 elseif($invoice->booking_type==3){
-	$data = $db->get('event_tickets','full_name,email,phone_no,no_of_seats,event',"INNER JOIN members on `event_tickets`.`user` = `members`.`id`");
+	$data = $db->get('event_tickets','full_name,email,phone_no,no_of_seats,event',"INNER JOIN members on `event_tickets`.`user` = `members`.`id` WHERE `event_tickets`.`id` = '$invoice->booking_id'");
 	$booking = (object)$data['result'][0];
 	$data = $db->get('events','event_name,ticket_charge,venue,event_starting,event_ending',"WHERE `id` = '$booking->event'");
 	$event = (object)$data['result'][0];
@@ -35,6 +35,27 @@ elseif($invoice->booking_type==3){
 	if($qty<1){
 		$qty=1;
 	}
+}
+elseif($invoice->booking_type==4){
+	$data = $db->get('court_long_booking','start_date,full_name,email,phone_no,end_date,court_id',"INNER JOIN members ON `members`.`id` = `court_long_booking`.`user` WHERE `court_long_booking`.`id` = '$invoice->booking_id'");
+	$booking = (object)$data['result'][0];
+	$court_id = $booking->court_id;
+	$data = $db->get('courts','court_name,tagline',"WHERE `id` = '$court_id'");
+	$court = (object)$data['result'][0];
+	$sdate = date('Y-m-d',strtotime($booking->start_date));
+	$edate = date('Y-m-d',strtotime($booking->end_date));
+	$price=0;
+	$current_date = $sdate;
+	while($current_date<=$edate){
+		$data = $db->get('court_inventory','`price`',"WHERE `date` = '$current_date' AND `court_id` = '$court_id'");
+		foreach($data['result'] as $key=>$slot){
+			$price += $slot[0];
+		}
+		$current_date=date('Y-m-d',(strtotime($current_date)+86400));
+	}
+	$description = $court->court_name.'<br><small>'.$court->tagline.'</small><br>'.date("d/m/Y",strtotime($booking->start_date)).' - '.date('d/m/Y',strtotime($booking->end_date));
+	$rate = $price;
+	$qty = 1;
 }
 $net = $rate * $qty;
 $total = round(($net * 1.18),2);
@@ -149,7 +170,7 @@ $total = round(($net * 1.18),2);
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
-<script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>
+<!--<script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>-->
 <script type="text/javascript" src="/js/app.js?v=0.0.26"></script>
 </body>
 </html>

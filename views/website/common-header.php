@@ -40,7 +40,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s1">
-				<a href="#"><img src="/img/menu-icon.png" height="30"></a>
+				<a href="#" data-activates="slide-out" class="button-collapse"><img src="/img/menu-icon.png" height="30"></a>
 			</div>
 			<div class="col s10">
 				<ul class="hide-on-med-and-down">
@@ -54,15 +54,15 @@
 				</ul>
 			</div>
 			<div class="col s1 right-align notification-icon">
-				<div class="offer-count">1</div>
+				<div class="offer-count">0</div>
 				<img src="/img/notification-icon.png" class="" height="30">
 				<div class="notifications left-align">
 					<ul>
-						<li>
+						<!--<li>
 							<a href="#">
 								<i class="material-icons left">card_giftcard</i> 10% off when you purchase court before 14 February 2017.
 							</a>
-						</li>
+						</li>-->
 					</ul>
 				</div>
 			</div>

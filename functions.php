@@ -103,9 +103,9 @@ function gallery_upload(){
 	$input = new input;
 	$db = new db;
 	$file = $input->image('gallery','gallery_img');
-	if($file!=0){
+	if($file!=''){
 		$data = array('image'=>$file,'status'=>1);
-		$db->insert('gallery',$data);
+		$id=$db->insert('gallery',$data);
 		header('Location: /admin/gallery/?msg=1');
 	}
 	else{
@@ -125,7 +125,13 @@ function add_member(){
 		$data = array('member_type'=>$member_type, 'full_name'=>$input->post('FullName'), 'gender'=>$input->post('Gender'), 'email'=>$input->post('Email'), 'klubsta_id'=>$input->post('klubstaId'), 'phone_no'=>$input->post('Phone'), 'location'=>$input->post('Location'), 'password'=>sha1($input->post('Password')));
 		$member_id=$db->insert('members',$data);
 		$_SESSION['member']=$member_id;
-		header('Location: /');
+		$callbackURL = $input->post('callbackURL');
+		if($callbackURL!=''){
+			redirect('/list/court/?callbackURL='.$callbackURL);
+		}
+		else{
+			header('Location: /');
+		}
 	}
 	else{
 		header('Location: /register/?msg=error');
@@ -154,7 +160,13 @@ function member_signin(){
 		$data = $db->get('members','id,password',"WHERE `email` = '$email'");
 		if(sha1($input->post('Password'))==$data['result'][0][1]){
 			$_SESSION['member'] = $data['result'][0][0];
-			header('Location: /');
+			$callbackURL = $input->post('callbackURL');
+			if($callbackURL!=''){
+				redirect('/list/court/?callbackURL='.$callbackURL);
+			}
+			else{
+				header('Location: /');
+			}
 		}
 		else{
 			header('Location: /signin/?msg=password-doesnt-match');
@@ -209,17 +221,14 @@ function news_delete(){
 
 }
 function news_edit(){
-
-$input = new input;
-$db = new db;
-$id =$input->post('id');
-$title=$input->post('name');
-$content=$input->post('content');
-
-$data = array('title'=>$title,'content'=>$content);
-$db->update('news',$data,$id);	
-header('Location: /admin/all-news/?msg=1');
-
+	$input = new input;
+	$db = new db;
+	$id =$input->post('id');
+	$title=$input->post('name');
+	$content=$input->post('content');
+	$data = array('title'=>$title,'content'=>$content);
+	$db->update('news',$data,$id);	
+	header('Location: /admin/all-news/?msg=1');
 }
 
 function add_rooms(){
@@ -266,8 +275,8 @@ function add_events(){
 	$input=new input;
 	$name=$input->post('name');
 	$venue=$input->post('venue');
-	$starting=$input->post('starting');
-	$ending=$input->post('ending');
+	$starting=date("Y-m-d H:i:s",strtotime($input->post('starting')));
+	$ending=date("Y-m-d H:i:s",strtotime($input->post('ending')));
 	$file=$input->image('events','event_image');
 	$seats=$input->post('seats');
 	$description=$input->post('description');
@@ -401,6 +410,20 @@ function add_to_cart(){
 		$_SESSION['invoice'] = $invoice_id;
 		redirect('/booking/payment/');
 	}
+	elseif($booking_type=='longbook'){
+		$booking_type = 4;
+		$sdate = date('Y-m-d',strtotime($input->post('startdate')));
+		$edate = date('Y-m-d',strtotime($input->post('enddate')));
+		$court_id = $input->post('court');
+		$data = array('user'=>$user, 'court_id'=>$court_id, 'start_date'=>$sdate, 'end_date'=>$edate, 'status'=>0);
+		$booking_id = $db->insert('court_long_booking',$data);
+		$booking_no = "TY"."U".$user."T".$booking_type."D".$booking_id;
+		$booking_no = substr($booking_no,0,12);
+		$data = array('booking_id'=>$booking_id, 'booking_no'=>$booking_no, 'booking_type'=>$booking_type, 'status'=>0);
+		$invoice_id = $db->insert('invoice',$data);
+		$_SESSION['invoice'] = $invoice_id;
+		redirect('/booking/payment/');
+	}
 }
 function pay_at_court(){
 	$invoice = $_SESSION['invoice'];
@@ -413,6 +436,10 @@ function pay_at_court(){
 	$data = array('status'=>1);
 	if($booking_type=='1'){
 		$db->update('court_booking',$data,$booking_id);
+		$data = $db->get('court_booking','timeslot',"WHERE `id` = '$booking_id'");
+		$timeslot = $data['result'][0][0];
+		$data = array('status'=>2);
+		$db->update('court_inventory',$data,$timeslot);
 		redirect('/booking/success/');
 	}
 	elseif($booking_type=='2'){
@@ -423,8 +450,46 @@ function pay_at_court(){
 		$db->update('event_tickets',$data,$booking_id);
 		redirect('/booking/success/');
 	}
+	elseif($booking_type=='4'){
+		$db->update('court_long_booking',$data,$booking_id);
+		$data = $db->get('court_long_booking','start_date,end_date,court_id',"WHERE `id` = '$booking_id'");
+		$sdate = date('Y-m-d',strtotime($data['result'][0]['start_date']));
+		$edate = date('y-m-d',strtotime($data['result'][0]['end_date']));
+		$court_id = $data['result'][0]['court_id'];
+		$status = array('status'=>2);
+		$current_date = $sdate;
+		while(strtotime($current_date)<=strtotime($edate)){
+			$data = $db->get('court_inventory','`id`',"WHERE `date` = '$current_date' AND `court_id` = '$court_id'");
+			foreach($data['result'] as $key=>$slot){
+				$timeslot= $slot[0];
+				$db->update('court_inventory',$status,$timeslot);
+			}
+			$current_date=date('Y-m-d',(strtotime($current_date)+86400));
+		}
+		redirect('/booking/success/');
+	}
 	else{
 		redirect('/booking/failed/');
 	}
+}
+function quick_dates(){
+	$input = new input;
+	$db = new db;
+	$start_date = date("Y-m-d",strtotime($input->post('start_date')));
+	$end_date = date("Y-m-d",strtotime($input->post('end_date')));
+	$court = $input->post('court');
+	$current_date = $start_date;
+	while($current_date<=$end_date){
+		foreach($_POST['timeslot'] as $slot){
+			$slot = date('H:i:s',strtotime($slot));
+			$data = $db->get('court_inventory',"COUNT(*)","WHERE `court_id` = '$court' AND `date` = '$current_date' AND `time` = '$slot'");
+			if($data['result'][0][0]==0){
+				$content = array('court_id'=>$court, 'date'=>$current_date, 'time'=>$slot, 'price'=>$input->post('price'), 'status'=>1);
+				$db->insert('court_inventory',$content);
+			}
+		}
+		$current_date = date('Y-m-d',(strtotime($current_date)+86400));
+	}
+	redirect('/admin/court/');
 }
 ?>

@@ -8,6 +8,7 @@
 			<ul>
 				<li><a href="/admin/court/"><small>&gt;&gt;</small> COURTS</a></li>
 				<li><a href="/admin/all-booking/"><small>&gt;&gt;</small> BOOKINGS</a></li>
+				<li><a href="/admin/bulk-booking/"><small>&gt;&gt;</small> BULK BOOKINGS</a></li>
 			</ul>
 		</li>
 		<li class="<?php if($sub_page=='members'){ echo 'active-menu'; } ?>"><a href="/admin/members/"><i class="material-icons">verified_user</i><span>MEMBERS</span></a></li>

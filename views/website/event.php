@@ -7,14 +7,14 @@ if($data['result']!=''){
 	?>
 	<section class="court-banner">
 		<div class="featured-img">
-			<img src="/img/match-profile-image2.jpg" style="width: 100%">
+			<img src="/img/events_badminton_coaching_banner.jpg" style="width: 100%">
 		</div>
 	</section>
 	<section class="court-heading white">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 center-align">
-					<h1><?php echo $rw['event_name']; ?><br><small><?php echo $rw['venue'] ?></small></h1>
+					<h1><?php echo $rw['event_name']; ?><br><small><i class="material-icons">location_on</i> <?php echo $rw['venue'] ?></small></h1>
 				</div>
 			</div>
 			<div class="row">
@@ -38,7 +38,8 @@ if($data['result']!=''){
 				</div>
 				<div class="col l6 m6 s12">
 					<p><strong>Reserve seats with our advanced booking system.</strong></p>
-					<p>Tennis players with an eye on competing professionally will want to practice and play on different types of courts. Tylos has the most comfortable rooms and its completely family friendly.</p>
+					<p>Badminton
+		 players with an eye on competing professionally will want to practice and play on different types of courts. Tylos has the most comfortable rooms and its completely family friendly.</p>
 					<p>Our Advanced Booking system has made simple and easy to book.  </p>
 					<form action="/ticket-book/<?php echo $rw['id']; ?>/" method="post">
 					<p id="msg"></p>

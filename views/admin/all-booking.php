@@ -17,9 +17,6 @@
 							Booking No
 						</th>
 						<th>
-							Court Id
-						</th>
-						<th>
 							User
 						</th>
 						<th>
@@ -50,8 +47,7 @@
 						<tr>
 						
 							<td><?php echo $i; ?></td>
-							<td><a <?php echo' href="/admin/booking-details/?booking_id='.$user.'&court_id='.$rw['court_id'].'"'?>><?php echo $data2['result'][0][0]; ?></a></td>
-							<td><?php echo $rw['court_id']; ?></td>
+							<td><a href="/admin/bill/<?php echo $data2['result'][0][0]; ?>/" target="_blank"><?php echo $data2['result'][0][0]; ?></a></td>
 							<td><?php echo $data1['result'][0][0]; ?></td>
 							<td><?php echo $rw['date']; ?></td>
 							<td><?php echo $rw['time']; ?></td>	

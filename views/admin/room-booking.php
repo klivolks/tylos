@@ -51,13 +51,13 @@
 						<tr>
 						
 							<td><?php echo $i; ?></td>
-							<td><a <?php echo' href="/admin/room-details/?room_id='.$room_id.'&user_id='.$user.'"'?>><?php echo $data2['result'][0][0]; ?></a></td>
+							<td><a href="/admin/bill/<?php echo $data2['result'][0][0]; ?>/" target="_blank"><?php echo $data2['result'][0][0]; ?></a></td>
 							<td><?php echo $rw['room_id']; ?></td>
 
 							<td><?php echo $data1['result'][0][0];
 							 ?>
-							 <td><?php echo $rw['check_in']; ?></td>
-							<td><?php echo $rw['check_out']; ?></td>	
+							 <td><?php echo $rw['expected_check_in']; ?></td>
+							<td><?php echo $rw['expected_check_out']; ?></td>	
 							 </td>
 							
 						</tr>

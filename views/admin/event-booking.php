@@ -51,7 +51,7 @@
 						<tr>
 						
 							<td><?php echo $i; ?></td>
-							<td><a <?php echo' href="/admin/event-details/?event_id='.$event_id.'&user_id='.$user.'"'?>><?php echo $data2['result'][0][0]; ?></a></td>
+							<td><a href="/admin/bill/<?php echo $data2['result'][0][0]; ?>/" target="_blank"><?php echo $data2['result'][0][0]; ?></a></td>
 							<td><?php echo $rw['event']; ?></td>
 
 							<td><?php echo $data1['result'][0][0];

@@ -42,7 +42,8 @@ if($data['result']!=''){
 				</div>
 				<div class="col l6 m6 s12">
 					<p><strong>Reserve rooms with our advanced booking system.</strong></p>
-					<p>Tennis players with an eye on competing professionally will want to practice and play on different types of courts. Tylos has the most comfortable rooms and its completely family friendly.</p>
+					<p>Badminton
+		 players with an eye on competing professionally will want to practice and play on different types of courts. Tylos has the most comfortable rooms and its completely family friendly.</p>
 					<p>Our Advanced Booking system has made simple and easy to book.  </p>
 					<form action="/room-book/<?php echo $rw['id']; ?>/" method="post" onSubmit="return verify_input('check_in')">
 					<p id="msg"></p>

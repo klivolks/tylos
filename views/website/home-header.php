@@ -1,7 +1,7 @@
 <section class="header fixed">
 	<div class="container">
 		<div class="row">
-			<div class="col l2 s6">
+			<div class="col l2 s4">
 				<img src="/img/logo.png" height="40" alt="Logo">
 			</div>
 			<div class="col l7 hide-on-med-and-down">
@@ -10,9 +10,10 @@
 					<li><a href="/blog/">Blog</a></li>
 					<li><a href="/gallery/">Gallery</a></li>
 					<li><a href="/contact-us-tylos/">Contact Us</a></li>
+					<li><a href="#" onClick="scrolltoquick()">Book Now</a></li>
 				</ul>
 			</div>
-			<div class="col l3 right-align login-box">
+			<div class="col l3 s8 right-align login-box">
 				<?php
 					if(isset($_SESSION['member'])){
 						$db = new db;

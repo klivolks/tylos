@@ -1,3 +1,8 @@
+<?php
+$db = new db;
+$data1 = $db->get('news','COUNT(*)',"WHERE 1");
+if($data1['result'][0][0]>0){
+?>
 <section class="blog">
 	<div class="container">
 		<div class="row">
@@ -6,7 +11,6 @@
 			</div>
 			<div class="col s12 no-padding">
 				<?php
-					$db = new db;
 					$data = $db->get('news','title,featured_img,created_at,`id`',"WHERE status = 1 ORDER BY `id` DESC LIMIT 0,2");
 					if(isset($data['result'])){
 						foreach($data['result'] as $key => $rw){
@@ -51,3 +55,6 @@
 		</div>
 	</div>
 </section>
+<?php
+}
+?>

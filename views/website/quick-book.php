@@ -30,30 +30,29 @@
 	<div class="container">
 		<div class="row" id="quick-book">
 			<div class="col s12 book-search-wrap" id="tab-1">
-				<?php 
-					$db = new db;
-					$data = $db->get('courts','*',"WHERE status = 1 ORDER BY id DESC LIMIT 0,5");
-					foreach($data['result'] as $key => $rw):
-				?>
 				<div class="col s12 book-item">
-					<form action="/court-book/<?php echo $rw['id']; ?>/" method="post">
-						<div class="col l2 s12">
+					<form action="/list/court/" method="post">
+						<div class="col l6 s12 item-detail">
 							<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date" required>
 						</div>
-						<a href="/court/<?php echo $rw['id']; ?>"><div class="col l8 s12 item-detail">
-							<?php echo $rw['court_name']  ?><br>
-							<small><?php echo $rw['tagline']  ?></small>
-						</div></a>
-						
-						<div class="col l2 s12 right-align">
-							<button type="submit" class="book-btn">Book Now</button>
+						<div class="col l6 s12 right-align">
+							<button type="submit" class="book-btn">Search Availablity</button>
 						</div>
 					</form>
 				</div>
-				<?php
-					endforeach;
-				?>
-				
+				<div class="col s12 book-item">
+					<h1 class="center-align">Book for a longer period</h1>
+				</div>
+				<div class="col s12 book-item">
+					<form action="/list/court-long/" method="post">
+						<div class="col l6 s12 item-detail">
+							<input type="text" class="daterange" name="dateOfBooking" placeholder="select date range" required>
+						</div>
+						<div class="col l6 s12 right-align">
+							<button type="submit" class="book-btn">Search Availablity</button>
+						</div>
+					</form>
+				</div>
 			</div>
 			<div class="col s12 book-search-wrap" id="tab-2" style="display: none;">
 				<?php 
@@ -81,29 +80,19 @@
 				
 			</div>
 			<div class="col s12 book-search-wrap" id="tab-3" style="display: none;">
-				<?php 
-					$db = new db;
-					$data = $db->get('rooms','*',"WHERE status = 1 ORDER BY id DESC LIMIT 0,5");
-					foreach($data['result'] as $key => $rw):
-				?>
 				<div class="col s12 book-item">
-					<form action="/room-book/<?php echo $rw['id']; ?>/" method="post">
-						<div class="col l2 s12">
-							<input type="text" class="datepicker" name="dateOfBooking" placeholder="Select date" required>
+					<form action="/list/room/" method="post">
+						<div class="col l4 s12">
+							<input type="text" class="datepicker" name="check_in" placeholder="Select date" required>
 						</div>
-						<a href="/room/<?php echo $rw['id']; ?>"><div class="col l8 s12 item-detail">
-							<?php echo $rw['room_name']  ?><br>
-							<small><?php echo $rw['room_type'];  ?></small>
-						</div></a>
-						<div class="col l2 s12 right-align">
-							<button type="submit" class="book-btn">Book Now</button>
+						<div class="col l4 s12">
+							<input type="text" class="datepicker" name="check_out" placeholder="Select date" required>
+						</div>
+						<div class="col l4 s12 right-align">
+							<button type="submit" class="book-btn">Check Room Availability</button>
 						</div>
 					</form>
 				</div>
-				<?php
-					endforeach;
-				?>
-				
 			</div>
 		</div>
 	</div>

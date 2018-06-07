@@ -15,6 +15,9 @@ body{
 	font-weight: normal;
 	color: #211f1f;
 }
+section{
+	width: 100%;
+}
 h1{
 	font-size: 24px;
 	font-weight: bold;
@@ -110,7 +113,7 @@ strong{
 /*banner*/
 .banner{
 	min-height: 500px;
-	background: url(/img/banner.jpg) no-repeat;
+	background: url(/img/banner-home.jpg) no-repeat;
 	background-size: 100%;
 	background-position: top;
 }
@@ -139,7 +142,15 @@ strong{
 	padding: 10px;
 	width: 100%;
 }
-
+@media screen and (max-width:768px){
+	.banner{
+		min-height: 100px;
+	}
+	.search{
+		margin: 75px 50px 30px 50px;
+	}
+	
+}
 
 /*menu*/
 .menu{
@@ -147,7 +158,8 @@ strong{
 	color: #211f1f;
 	text-transform: uppercase;
 	box-shadow: 0px 0px 5px 0px #AAAAAA;
-	position: relative
+	position: relative;
+	z-index: 9;
 }
 .menu ul{
 	display: block;
@@ -343,10 +355,15 @@ strong{
 /*sales-accelerator*/
 .sales-accelerator{
 	padding: 30px 0px;
-	background: #FFFFFF url(../img/sales-accelerator-bg.jpg) no-repeat;
+	background: #FFFFFF url(../img/get_your_court_now_background.jpg) no-repeat;
 	background-position: top;
 	background-size: 100%;
 	min-height: 500px;
+}
+@media screen and (max-width:768px){
+	.sales-accelerator{
+		background-size: cover;
+	}
 }
 .sales-form-wrap{
 	background: #FFFFFF;
@@ -933,4 +950,22 @@ ul.features{
 	.center-align{
 		text-align: center !important;
 	}
+}
+
+/*v 1.0.0*/
+.slot{
+	padding: 10px;
+	border:1px solid #b13e49;
+	color: #b13e49;
+	margin:15px;
+	float: left;
+	min-width: 200px;
+	text-align: center;
+}
+.slot:hover,.slot.active{
+	background: #b13e49;
+	color: #FFFFFF;
+}
+#book-btn{
+	display: none;
 }

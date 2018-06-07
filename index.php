@@ -122,8 +122,11 @@ if($plugin=='admin'){
 			elseif($module=='event-delete'){
 				event_delete();
 			}
-				elseif($module=='event-edit'){
+			elseif($module=='event-edit'){
 				event_edit();
+			}
+			elseif($module=='quick-date'){
+				quick_dates();
 			}
 		}
 	}
@@ -219,6 +222,16 @@ if($plugin=='admin'){
 		$load->view('admin/all-booking');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='bulk-booking'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','bulk-booking');
+		$load->view('admin/long-booking');
+		$load->view('admin/footer');
+	}
 	elseif($sub_page=='booking-details'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
@@ -239,7 +252,16 @@ if($plugin=='admin'){
 		$load->view('admin/inventory');
 		$load->view('admin/footer');
 	}
-	
+	elseif($sub_page=='quick-update'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$load->view('admin/meta');
+		$load->view('admin/header');
+		$load->view('admin/sidebar','inventory');
+		$load->view('admin/quick-update',$param[3]);
+		$load->view('admin/footer');
+	}
 	elseif($sub_page=='add-rooms'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
@@ -380,6 +402,21 @@ if($plugin=='admin'){
 		$load->view('admin/event-edit');
 		$load->view('admin/footer');
 	}
+	elseif($sub_page=='bill'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		$db = new db;
+		$booking_no = $db->escape($param[3]);
+		$data = $db->get('invoice','count(*)',"WHERE booking_no = '$booking_no'");
+		if($data['result'][0][0]!=1){
+			redirect('/not-found/');
+		}
+		else{
+			$load->view('website/meta');
+			$load->view('admin/print',$booking_no);
+		}
+	}
 	else{
 		if(check_session()==1){
 			header('Location: /admin/dashboard/');
@@ -415,6 +452,7 @@ elseif($plugin=='register'){
 	$load->view('website/common-header');
 	$load->view('website/registration');
 	$load->view('website/footer');
+	$load->view('website/regscript');
 }
 elseif($plugin=='logout'){
 	member_logout();
@@ -534,14 +572,21 @@ elseif($plugin=='ticket-book'){
 	}
 }
 elseif($plugin=='booking'){
+	$input = new input;
+	$court = $input->post('court');
+	if($court!=''){
+		$callbackURL='court&slot='.$input->post('timeSlot');
+	}
+	if(!isset($_SESSION['member'])){
+		redirect('/signin/?callbackURL='.$callbackURL);
+	}
 	$step=$param[2];
 	if($step=='confirm'){
-		$input = new input;
 		$court = $input->post('court');
 		$room = $input->post('room');
 		$event = $input->post('event');
 		if($court!=''){
-			if($input->post('timeSlot')==''){
+			if($input->post('timeSlot')==''&&$input->post('startdate')==''){
 				redirect('/booking/failed/');
 			}
 		}
@@ -597,6 +642,54 @@ elseif($plugin=='booking'){
 		else{
 		$load->view('website/meta');
 		$load->view('website/print',$booking_no);
+		}
+	}
+	else{
+		redirect('/not-found/');
+	}
+}
+elseif($plugin=='list'){
+	if($param[2]=='court'){
+		$input = new input;
+		if($input->post('dateOfBooking')!=''){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/list-court');
+			$load->view('website/footer');
+		}
+		if($input->get('callbackURL')!=''){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/list-court');
+			$load->view('website/footer');
+			$load->view('website/select-slot');
+		}
+		else{
+			redirect('/not-found/');
+		}
+	}
+	elseif($param[2]=='court-long'){
+		$input = new input;
+		if($input->post('dateOfBooking')!=''){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/list-court-long');
+			$load->view('website/footer');
+		}
+		else{
+			redirect('/not-found/');
+		}
+	}
+	elseif($param[2]=='room'){
+		$input = new input;
+		if($input->post('check_in')!=''){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/list-room');
+			$load->view('website/footer');
+		}
+		else{
+			redirect('/not-found/');
 		}
 	}
 	else{
@@ -737,7 +830,7 @@ elseif($plugin==''){
 	$load->view('website/trending');
 	$load->view('website/quick-book');
 	$load->view('website/sales-accelerator');
-	$load->view('website/old-events');
+	//$load->view('website/old-events');
 	$load->view('website/home-gallery');
 	$load->view('website/home-blog');
 	$load->view('website/footer');

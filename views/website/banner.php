@@ -13,8 +13,8 @@
 					</form>
 				</div>
 			</div>
-			<div class="col s12 no-padding center-align">
-				<div class="col s2">
+			<div class="col s12 no-padding center-align hide-on-med-and-down">
+				<!--<div class="col s2">
 					<a href="#"><img src="/img/court-icon.png" height="60"></a>
 				</div>
 				<div class="col s2">
@@ -31,7 +31,7 @@
 				</div>
 				<div class="col s2">
 					<a href="#"><img src="/img/activities-icon.png" height="60"></a>
-				</div>
+				</div>-->
 			</div>
 		</div>
 	</div>

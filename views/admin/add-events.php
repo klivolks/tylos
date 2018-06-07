@@ -5,7 +5,7 @@
 			$msg=$_REQUEST['msg'];
 			if($msg=='1'){
 				?>
-					<div class="card-panel green white-text">Your room created successfully!!</div>
+					<div class="card-panel green white-text">Your event created successfully!!</div>
 				<?php
 			}
 				else if($msg=='0'){
@@ -33,7 +33,7 @@
     <form class="col s12" method="post" action="/admin/add/events/" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col s12">
-          <input id="name" type="text"  name="name" class="validate">
+          <input id="name" type="text"  name="name" class="validate" required>
           <label for="first_name">Name</label>
         </div>
       </div>
@@ -60,7 +60,7 @@
           <div class = "row">  
             <div class="datepicker-field col s12">             
                <label>Event Starting</label>              
-               <input type = "date" name="starting" class = "datepicker" />    
+               <input type = "date" name="starting" class = "datepicker" required />    
             </div>            
             </div> 
       </div>
@@ -69,7 +69,7 @@
            <div class="datepicker-field col s12"> 
             <div class = "row">               
                <label>Event Ending</label>              
-               <input type = "date" name="ending" class = "datepicker" />    
+               <input type = "date" name="ending" class = "datepicker" required />    
             </div>
           </div>            
             
@@ -84,7 +84,7 @@
       <div class="row">
         <div class="input-field col s12">
          <label >Seats</label>
-          <input name="seats" type="text" class="validate">
+          <input name="seats" type="number" class="validate" required>
          
         </div>
        </div>  

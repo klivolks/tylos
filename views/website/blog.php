@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12">
-				<h1 class="center-align">NEWS<br /><small>Latest from TYLOS</small></h1>
+				<h1 class="center-align">BLOG<br /><small>Latest from TYLOS</small></h1>
 			</div>
 			<?php
 			$db = new db;

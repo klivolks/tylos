@@ -21,6 +21,16 @@ $(function(){
     close: 'Ok',
     closeOnSelect: false
   });
+	$('.timepicker').pickatime({
+    default: 'now', 
+	interval: 60,
+    twelvehour: true, 
+    donetext: 'OK', 
+    cleartext: 'Clear', 
+    canceltext: 'Cancel', 
+    autoclose: false, 
+    ampmclickable: true
+  });
 	$('.materialboxed').materialbox();
 	$('body').css('display', 'none');
 	$('body').fadeIn(200);
@@ -41,6 +51,17 @@ $(function(){
 		};
 	}
 	$('select').material_select();
+	$(".daterange").daterangepicker({
+		minDate: new Date(),
+		autoUpdateInput: false,
+		locale: {
+		  format: 'D MMMM, Y'
+		}
+	});
+	$('.daterange').on('apply.daterangepicker', function(ev, picker) {
+      $(this).val(picker.startDate.format('D MMMM, Y') + ' - ' + picker.endDate.format('D MMMM, Y'));
+  });
+	$(".button-collapse").sideNav();
 });
 function prev_slide(){ 
 	$('.trending-wrap').multislider('prev'); 
@@ -77,6 +98,7 @@ function socialMediaLogin(){
 	});
 }
 function Klubstasignin(){
+	var callbackURL = $("#callbackURL").val();
 	ocalogin(function(response){
 		$.ajax({
 			url:"/functions/klubsta-signin/",
@@ -87,10 +109,15 @@ function Klubstasignin(){
 			},
 			success:function(data){
 				if(data==='error'){
-					window.location.assign('/register/?msg=notregistered');
+					window.location.assign('/register/?msg=notregistered&callbackURL='+callbackURL);
 				}
 				else{
-					window.location.assign('/');
+					if(callbackURL!=null){
+						window.location.assign('/list/court/?callbackURL='+callbackURL);
+					}
+					else{
+						window.location.assign('/');
+					}
 				}
 			}
 		});
@@ -121,4 +148,35 @@ function activate_tab(n){
 	$("#tab-"+n).show(500);
 	$(".icon").removeClass('active');
 	$("#icon-"+n).addClass('active');
-} 
+}
+function scrolltoquick(){
+	var scroll = parseInt($(".quick-book").offset().top);
+	$("html, body").animate({ scrollTop: scroll }, 1000);
+}
+function select_slot(slot,court){
+	$(".slot").removeClass('active');
+	$("#slot_"+slot).addClass('active');
+	$("#court").val(court);
+	$("#timeSlot").val(slot);
+	$("#book-btn").show();
+	var scroll = parseInt($("#book-btn").offset().top);
+	$("html, body").animate({ scrollTop: scroll }, 1000);
+}
+function validate_reg(event){
+	var nam = $("#FullName").val();
+	var phone = $("#Phone").val();
+	if(!(/^[a-zA-Z_ ]*$/.test(nam))){
+		$(".msg").html('Use only letters for FullName');
+		$("#FullName").addClass('invalid');
+		return false;
+	}
+	else if(!(/^[0-9]*$/.test(phone))&&phone<999999999999){
+		$(".msg").html('Use only numbers maximum of 12 digits for phone');
+		$("#Phone").addClass('invalid');
+		return false;
+	}
+	else if($("#Password").val()!=$("#RetypePassword").val()){
+		$(".msg").html("Passwords doesn\'t match");
+		return false;
+	}
+}

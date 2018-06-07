@@ -52,6 +52,51 @@
 				</div>
 				<?php
 				}
+				elseif($booking_type=='longbook'){
+					$court_id = $input->post('court');
+					$data = $db->get('courts','court_name',"WHERE `id` = '$court_id'");
+					$court_name = $data['result'][0][0];
+					$sdate = date('Y-m-d',strtotime($input->post('startdate')));
+					$edate = date('Y-m-d',strtotime($input->post('enddate')));
+					$price=0;
+					$current_date = $sdate;
+					while($current_date<=$edate){
+						$data = $db->get('court_inventory','`price`',"WHERE `date` = '$current_date' AND `court_id` = '$court_id'");
+						foreach($data['result'] as $key=>$slot){
+							$price += $slot[0];
+						}
+						$current_date=date('Y-m-d',(strtotime($current_date)+86400));
+					}
+				?>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s4">Court : </div>
+					<div class="col s8">
+						<?php echo $court_name; ?>
+						<input type="hidden" name="court" value="<?php echo $court_id; ?>">
+					</div>
+				</div>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s4">Starting Date : </div>
+					<div class="col s8">
+						<?php echo date('d M Y',strtotime($sdate)); ?>
+						<input type="hidden" name="startdate" value="<?php echo $sdate; ?>">
+					</div>
+				</div>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s4">Ending Date : </div>
+					<div class="col s8">
+						<?php echo date('d M Y',strtotime($edate)); ?>
+						<input type="hidden" name="enddate" value="<?php echo $edate; ?>">
+					</div>
+				</div>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s4">Price : </div>
+					<div class="col s8">
+						Rs. <?php echo $price; ?>
+					</div>
+				</div>
+				<?php
+				}
 				elseif($booking_type=='room'){
 					$room_id = $input->post('room');
 					$data = $db->get('rooms','room_name,rent',"WHERE `id` = '$room_id'");
@@ -141,7 +186,7 @@
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Total Rent : </div>
+						<div class="col s4">Total Charge : </div>
 						<div class="col s8">
 							<strong><?php echo $total; ?></strong>
 						</div>

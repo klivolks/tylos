@@ -58,10 +58,26 @@
 		</div>
 	</div>
 </section>
+<ul id="slide-out" class="side-nav">
+    <li><div class="user-view" style="height: 200px;">
+      <div class="background">
+        <img src="/img/banner-home.jpg">
+      </div>
+    </div></li>
+    <li><a href="/about-us-tylos/">We're tylos</a></li>
+	<li><a href="/search/court/">Courts</a></li>
+	<li><a href="/search/rooms/">Rooms</a></li>
+	<li><a href="/search/events/">Events</a></li>
+	<li><a href="/blog/">Blog</a></li>
+	<li><a href="/gallery/">Gallery</a></li>
+	<li><a href="/contact-us-tylos/">Contact Us</a></li>
+  </ul>
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 <script type="text/javascript" src="/js/materialize.min.js"></script>
-<script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>
-<script type="text/javascript" src="/js/app.js?v=0.0.27"></script>
+<!--<script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>-->
+<script src="/js/moment.min.js" type="text/javascript"></script>
+<script src="/js/daterangepicker.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/app.js?v=2.0.0"></script>
 <script type="text/javascript" src="/js/multislider.min.js"></script>
 </body>
 </html>
