@@ -53,7 +53,7 @@
 		?>
 			<div class="col l3 s12" style="position: relative;">
 				<img src="/img/gallery/<?php echo $rw['image'] ?>" class="responsive-img gallery-img">
-				<a<?php echo' href="/admin/add/gallery-delete/?id='.$id.'"'?> class="btn-floating right red" style="position: absolute; top: 0; right: 0;"><i class="material-icons">close</i></a>
+				<a<?php echo' href="/admin/add/gallery-delete/?id='.$id.'"'?> class="btn-floating right red" style="position: absolute; top: 0; right: 0;" onClick="confirm_btn()"><i class="material-icons">close</i></a>
 			</div>
 			<?php
 				
@@ -67,3 +67,13 @@
 		?>
 	</div>
 </div>
+<script>
+	function confirm_btn(){
+		if(window.confirm('You really want to delete?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

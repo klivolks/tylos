@@ -27,11 +27,11 @@
 				<li class=""><a href="/admin/room-booking"><small>&gt;&gt;</small> BOOKING</a></li>
 			</ul>
 		</li>
-		<li class="<?php if($sub_page=='all-events'){ echo 'active-menu'; } ?>"><a href="/admin/event-booking/"><i class="material-icons">event_note</i><span>EVENTS</span></a>
+		<li class="<?php if($sub_page=='all-events'){ echo 'active-menu'; } ?>"><a href="/admin/event-booking/"><i class="material-icons">event_note</i><span>COURSES</span></a>
 		<ul>
-				<li class=""><a href="/admin/all-events"><small>&gt;&gt;</small> All EVENTS</a></li>
-				<li class=""><a href="/admin/add-events"><small>&gt;&gt;</small> ADD EVENTS</a></li>
-				<li class=""><a href="/admin/event-booking"><small>&gt;&gt;</small> BOOKING</a></li>
+				<li class=""><a href="/admin/all-events"><small>&gt;&gt;</small> All COURSES</a></li>
+				<li class=""><a href="/admin/add-events"><small>&gt;&gt;</small> ADD COURSE</a></li>
+				<li class=""><a href="/admin/event-booking"><small>&gt;&gt;</small> SUBSCRIPTION</a></li>
 			</ul>
 		</li>
 		<li class="<?php if($sub_page=='admin'){ echo 'active-menu'; } ?>"><a href="/admin/all">

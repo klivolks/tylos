@@ -153,16 +153,34 @@ function scrolltoquick(){
 	var scroll = parseInt($(".quick-book").offset().top);
 	$("html, body").animate({ scrollTop: scroll }, 1000);
 }
-function select_slot(slot,court){
-	$(".slot").removeClass('active');
-	$("#slot_"+slot).addClass('active');
-	$("#court").val(court);
-	$("#timeSlot").val(slot);
+function select_slot(slot){
+	if($("#slot_"+slot).hasClass('active')){
+		$("#slot_"+slot).removeClass('active');
+	}
+	else{
+		$("#slot_"+slot).addClass('active');
+		$("#timeSlot").val(slot);
+	}
+	$("#slot_check_"+slot).click();
 	$("#book-btn").show();
-	var scroll = parseInt($("#book-btn").offset().top);
-	$("html, body").animate({ scrollTop: scroll }, 1000);
+	//var scroll = parseInt($("#book-btn").offset().top);
+	//$("html, body").animate({ scrollTop: scroll }, 1000);
 }
-function validate_reg(event){
+function select_long_slot(slot){
+	if($("#slot_"+slot).hasClass('active')){
+		$("#slot_"+slot).removeClass('active');
+	}
+	else{
+		$("#slot_"+slot).addClass('active');
+		$("#timeSlot").val(slot);
+	}
+	$("#slot_check_"+slot).click();
+	$("#book-btn").show();
+	//var scroll = parseInt($("#book-btn").offset().top);
+	//$("html, body").animate({ scrollTop: scroll }, 1000);
+}
+function validate_reg(){
+	$(".msg").html('');
 	var nam = $("#FullName").val();
 	var phone = $("#Phone").val();
 	if(!(/^[a-zA-Z_ ]*$/.test(nam))){
@@ -170,8 +188,8 @@ function validate_reg(event){
 		$("#FullName").addClass('invalid');
 		return false;
 	}
-	else if(!(/^[0-9]*$/.test(phone))&&phone<999999999999){
-		$(".msg").html('Use only numbers maximum of 12 digits for phone');
+	else if(phone>999999999999 || phone<1000000000){
+		$(".msg").html('Use only numbers. Maximum of 12 digits for phone');
 		$("#Phone").addClass('invalid');
 		return false;
 	}
@@ -179,4 +197,35 @@ function validate_reg(event){
 		$(".msg").html("Passwords doesn\'t match");
 		return false;
 	}
+	else{
+		return true;
+	}
+}
+function checkout(){
+	var check_in = new Date(Date.parse($("#check_in").val()));
+	$('#check_out').pickadate({
+	disable: [
+    	{ from: [0,0,0], to: check_in }
+  	],
+    selectMonths: true,
+    selectYears: 15, 
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false
+  });
+}
+function end_date(){
+	var startdate = new Date(Date.parse($("#startdate").val()));
+	$('#enddate').pickadate({
+	disable: [
+    	{ from: [0,0,0], to: startdate }
+  	],
+    selectMonths: true,
+    selectYears: 15, 
+    today: 'Today',
+    clear: 'Clear',
+    close: 'Ok',
+    closeOnSelect: false
+  });
 }

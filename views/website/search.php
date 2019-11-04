@@ -117,7 +117,7 @@
 	<div class="container" style="margin-top: 20px;">
 		<div class="row">
 			<div class="col s12">
-				<h1>Events<br><small>Events matching your search preference</small></h1>
+				<h1>Courses<br><small>Courses matching your search preference</small></h1>
 			</div>
 		</div>
 		<div class="row">

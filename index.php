@@ -68,6 +68,27 @@ if($plugin=='admin'){
 			change_password();
 		}
 	}
+	elseif($sub_page=='pay'){
+		if(check_session()==0){
+			header('Location: /admin/login/');
+		}
+		if($param[3]=='event'){
+			paid($param[4]);
+			redirect('/admin/event-booking/');
+		}
+		elseif($param[3]=='room'){
+			paid($param[4]);
+			redirect('/admin/room-booking/');
+		}
+		elseif($param[3]=='court'){
+			paid($param[4]);
+			redirect('/admin/all-booking/');
+		}
+		elseif($param[3]=='bulk'){
+			paid($param[4]);
+			redirect('/admin/bulk-booking/');
+		}
+	}
 	elseif($sub_page=='add'){
 		if(check_session()==0){
 			header('Location: /admin/login/');
@@ -409,7 +430,7 @@ if($plugin=='admin'){
 		$db = new db;
 		$booking_no = $db->escape($param[3]);
 		$data = $db->get('invoice','count(*)',"WHERE booking_no = '$booking_no'");
-		if($data['result'][0][0]!=1){
+		if($data['result'][0][0]<1){
 			redirect('/not-found/');
 		}
 		else{
@@ -446,6 +467,27 @@ elseif($plugin=='functions'){
 			pay_at_court();
 		}
 	}
+	elseif($function=='forgot-password'){
+		email_reset_key();
+	}
+	elseif($function=='reset-password'){
+		reset_password();
+	}
+	elseif($function=='pay'){
+		go_to_pay($param[3]);
+	}
+	elseif($function=='cancel'){
+		cancel_booking($param[3]);
+	}
+	elseif($function=='change-password'){
+		change_password_member();
+	}
+	elseif($function=='contact'){
+		contact_us();
+	}
+	elseif($function=='update-profile'){
+		update_profile();
+	}
 }
 elseif($plugin=='register'){
 	$load->view('website/meta');
@@ -454,6 +496,12 @@ elseif($plugin=='register'){
 	$load->view('website/footer');
 	$load->view('website/regscript');
 }
+elseif($plugin=='reset'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/reset',$param[2]);
+	$load->view('website/footer');
+}
 elseif($plugin=='logout'){
 	member_logout();
 }
@@ -461,6 +509,12 @@ elseif($plugin=='signin'){
 	$load->view('website/meta');
 	$load->view('website/common-header');
 	$load->view('website/signin');
+	$load->view('website/footer');
+}
+elseif($plugin=='forgot-password'){
+	$load->view('website/meta');
+	$load->view('website/common-header');
+	$load->view('website/forgot-password');
 	$load->view('website/footer');
 }
 elseif($plugin=='court'){
@@ -551,11 +605,11 @@ elseif($plugin=='room-book'){
 }
 elseif($plugin=='ticket-book'){
 	$input = new input;
+	$db = new db;
+	$id = $db->escape($param[2]);
 	if(!isset($_SESSION['member'])){
 		redirect('/signin/');
 	}
-	$db = new db;
-	$id = $db->escape($param[2]);
 	$data = $db->get('events','count(*)',"WHERE `id` = '$id'");
 	if($data['result'][0][0]==0){
 		redirect('/not-found/');
@@ -574,8 +628,15 @@ elseif($plugin=='ticket-book'){
 elseif($plugin=='booking'){
 	$input = new input;
 	$court = $input->post('court');
-	if($court!=''){
-		$callbackURL='court&slot='.$input->post('timeSlot');
+	$room = $input->post('no_of_rooms');
+	if($court!=''&&$input->post('timeSlot')!=''){
+		$callbackURL='court&slot='.$input->post('court');
+	}
+	elseif($court!=''&&$input->post('startdate')!=''){
+		$callbackURL='long-court&start_date='.$input->post('startdate').'&end_date='.$input->post('enddate');
+	}
+	elseif($room!=''){
+		$callbackURL='room&start_date='.$input->post('check_in').'&end_date='.$input->post('check_out');
 	}
 	if(!isset($_SESSION['member'])){
 		redirect('/signin/?callbackURL='.$callbackURL);
@@ -583,7 +644,7 @@ elseif($plugin=='booking'){
 	$step=$param[2];
 	if($step=='confirm'){
 		$court = $input->post('court');
-		$room = $input->post('room');
+		$room = $input->post('no_of_rooms');
 		$event = $input->post('event');
 		if($court!=''){
 			if($input->post('timeSlot')==''&&$input->post('startdate')==''){
@@ -636,7 +697,7 @@ elseif($plugin=='booking'){
 		$db = new db;
 		$booking_no = $db->escape($param[3]);
 		$data = $db->get('invoice','count(*)',"WHERE booking_no = '$booking_no'");
-		if($data['result'][0][0]!=1){
+		if($data['result'][0][0]<1){
 			redirect('/not-found/');
 		}
 		else{
@@ -670,7 +731,7 @@ elseif($plugin=='list'){
 	}
 	elseif($param[2]=='court-long'){
 		$input = new input;
-		if($input->post('dateOfBooking')!=''){
+		if($input->post('startdate')!=''){
 			$load->view('website/meta');
 			$load->view('website/common-header');
 			$load->view('website/list-court-long');
@@ -751,13 +812,19 @@ elseif($plugin=='account'){
 		if($section=='profile'){
 			$load->view('website/meta');
 			$load->view('website/common-header');
-			$load->view('website/my-profile');
+			$load->view('website/my-profile-2');
 			$load->view('website/footer');
 		}
-		elseif($section=='players'){
+		if($section=='edit-profile'){
 			$load->view('website/meta');
 			$load->view('website/common-header');
-			$load->view('website/my-player');
+			$load->view('website/edit-profile-2');
+			$load->view('website/footer');
+		}
+		elseif($section=='change-password'){
+			$load->view('website/meta');
+			$load->view('website/common-header');
+			$load->view('website/change-password');
 			$load->view('website/footer');
 		}
 		elseif($section=='history'){
@@ -766,6 +833,12 @@ elseif($plugin=='account'){
 				$load->view('website/meta');
 				$load->view('website/common-header');
 				$load->view('website/court-booking');
+				$load->view('website/footer');
+			}
+			if($sub_section=='long-court'){
+				$load->view('website/meta');
+				$load->view('website/common-header');
+				$load->view('website/court-long-booking');
 				$load->view('website/footer');
 			}
 			elseif($sub_section=='room'){
@@ -816,6 +889,18 @@ elseif($plugin=='search'){
 		$load->view('website/meta');
 		$load->view('website/common-header');
 		$load->view('website/event-search');
+		$load->view('website/footer');
+	}
+	elseif($sub_section=='court-new'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/courts');
+		$load->view('website/footer');
+	}
+	elseif($sub_section=='room-new'){
+		$load->view('website/meta');
+		$load->view('website/common-header');
+		$load->view('website/rooms');
 		$load->view('website/footer');
 	}
 	else{

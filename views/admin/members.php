@@ -32,9 +32,6 @@
 							Name
 						</th>
 						<th>
-							Member Type
-						</th>
-						<th>
 							Gender
 						</th>
 						<th>
@@ -42,9 +39,6 @@
 						</th>
 						<th>
 							Phone
-						</th>
-						<th>
-							Location
 						</th>
 					</thead>
 					<tbody>
@@ -68,11 +62,9 @@
 						<tr>
 							<td><?php echo $i; ?></td>
 							<td><?php echo $rw['full_name']; ?></td>
-							<td><?php echo $type; ?></td>
 							<td><?php echo $rw['gender']; ?></td>
 							<td><?php echo $rw['email'] ?></td>
 							<td><?php echo $rw['phone_no'] ?></td>
-							<td><?php echo $rw['location'] ?></td>
 							
 						</tr>
 						<?php $i++; } ?>

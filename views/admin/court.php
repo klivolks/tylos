@@ -8,6 +8,11 @@
 					<div class="card-panel green white-text">Court added successfully!!</div>
 				<?php
 			}
+			if($msg=='4'){
+				?>
+					<div class="card-panel green white-text">Inventory updated successfully!!</div>
+				<?php
+			}
 				if($msg=='2'){
 				?>
 					<div class="card-panel green white-text">Court edited successfully!!</div>
@@ -47,9 +52,9 @@
 							  <i class="large material-icons">menu</i>
 							</a>
 							<ul>
-							  <li><a <?php echo  'href="/admin/add/court-delete/?id='.$court_id.'"' ?> class="btn-floating red"><i class="material-icons">delete</i></a></li>
-							  <li><a <?php echo  'href="/admin/court_edit/?id='.$court_id.'"' ?> class="btn-floating yellow darken-4" ><i class="material-icons">edit</i></a></li>
-							  <li><a class="btn-floating blue darken-1"  <?php echo' href="/admin/inventory/?court_id='.$court_id.'"'?>><i class="material-icons">remove_red_eye</i></a></li>
+							  <li><a <?php echo  'href="/admin/add/court-delete/?id='.$court_id.'"' ?> class="btn-floating red"><i class="material-icons" onClick="confirm_btn()" title="Delete">delete</i></a></li>
+							  <li><a <?php echo  'href="/admin/court_edit/?id='.$court_id.'"' ?> class="btn-floating yellow darken-4"  title="Edit"><i class="material-icons">edit</i></a></li>
+							  <li><a class="btn-floating blue darken-1"  <?php echo' href="/admin/inventory/?court_id='.$court_id.'"'?> title="Inventory"><i class="material-icons">remove_red_eye</i></a></li>
 							</ul>
 						  </div>
 						<img src="/img/courts/<?php echo $rw['featured_img'] ?>" class="responsive-img"><br>
@@ -66,3 +71,13 @@
 			</div>
 		</div>
 </div>
+<script>
+	function confirm_btn(){
+		if(window.confirm('You really want to delete?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

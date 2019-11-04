@@ -6,9 +6,9 @@
 			</div>
 			<div class="col l10 s4">
 				<ul class="hide-on-med-and-down">
-					<li><a href="/search/court/">Courts</a></li>
-					<li><a href="/search/rooms/">Rooms</a></li>
-					<li><a href="/search/events/">Events</a></li>
+					<li><a href="/search/court-new/">Courts</a></li>
+					<li><a href="/search/room-new/">Rooms</a></li>
+					<li><a href="/search/events/">Courses</a></li>
 					<!--<li><a href="/teams/">Teams</a></li>
 					<li><a href="/players/">Players</a></li>-->
 				</ul>

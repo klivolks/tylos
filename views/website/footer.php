@@ -7,7 +7,7 @@
 				<a href="https://www.facebook.com/TYLOS-Academy-387548051664078/"><div class="social-icons fb"></div></a> <a href="#"><div class="social-icons twitter"></div></a> <a href="#"><div class="social-icons gplus"></div></a> <a href="#"><div class="social-icons instagram"></div></a> <a href="#"><div class="social-icons youtube"></div></a>
 			</div>
 			<div class="col l3 s12 sub-footer-col">
-				<h6 class="white-text">Latest News</h6>
+				<h6 class="white-text">Latest Blog</h6>
 				<ul class="news">
 					<?php 
 					$db = new db; 
@@ -64,10 +64,11 @@
         <img src="/img/banner-home.jpg">
       </div>
     </div></li>
+    <li><a href="/">Home</a></li>
     <li><a href="/about-us-tylos/">We're tylos</a></li>
-	<li><a href="/search/court/">Courts</a></li>
-	<li><a href="/search/rooms/">Rooms</a></li>
-	<li><a href="/search/events/">Events</a></li>
+	<li><a href="/search/court-new/">Courts</a></li>
+	<li><a href="/search/room-new/">Rooms</a></li>
+	<li><a href="/search/events/">Courses</a></li>
 	<li><a href="/blog/">Blog</a></li>
 	<li><a href="/gallery/">Gallery</a></li>
 	<li><a href="/contact-us-tylos/">Contact Us</a></li>
@@ -77,7 +78,7 @@
 <!--<script src="https://api.klubsta.com/sdk.js?v=0.2.0"> </script>-->
 <script src="/js/moment.min.js" type="text/javascript"></script>
 <script src="/js/daterangepicker.js" type="text/javascript"></script>
-<script type="text/javascript" src="/js/app.js?v=2.0.0"></script>
+<script type="text/javascript" src="/js/app.js?v=2.0.9"></script>
 <script type="text/javascript" src="/js/multislider.min.js"></script>
 </body>
 </html>

@@ -16,9 +16,9 @@
 					$input = new input;
 					$date = date('Y-m-d',strtotime($input->post('check_in')));
 					$date2 = date('Y-m-d',strtotime($input->post('check_out')));
-					$data = $db->get('rooms','`rooms`.`id` as roomid,room_name,room_type',"INNER JOIN room_booking ON `room_booking`.`room_id` = `rooms`.`id` WHERE `rooms`.`status` = 1 AND ('$date' NOT BETWEEN `room_booking`.`expected_check_in` AND `room_booking`.`expected_check_out`) AND ('$date2' NOT BETWEEN `room_booking`.`expected_check_in` AND `room_booking`.`expected_check_out`) GROUP BY `rooms`.`id`");
+					$data = $db->get('rooms','`rooms`.`id` as roomid,room_name,room_type',"INNER JOIN room_booking ON `room_booking`.`room_id` = `rooms`.`id` WHERE `rooms`.`status` = 1 AND ('$date' NOT BETWEEN `room_booking`.`expected_check_in` AND `room_booking`.`expected_check_out`) AND ('$date2' NOT BETWEEN `room_booking`.`expected_check_in` AND `room_booking`.`expected_check_out`) GROUP BY `rooms`.`id` LIMIT 0,1");
 					if(!isset($data['result'])){
-						$data = $db->get('rooms','`rooms`.`id` as roomid,room_name,room_type',"WHERE `rooms`.`status` = 1");
+						$data = $db->get('rooms','`rooms`.`id` as roomid,room_name,room_type',"WHERE `rooms`.`status` = 1 LIMIT 0,1");
 					}
 					foreach($data['result'] as $key => $rw):
 				?>
@@ -32,7 +32,11 @@
 						</div></a>
 
 						<div class="col l2 s12 right-align">
-							<button type="submit" class="book-btn">Book Now</button>
+							<button type="submit" class="book-btn" id="book-btn">Book Now</button>
+							<script>
+							var xs = document.getElementById("book-btn");
+							document.onload = xs.click();
+						</script>
 						</div>
 					</form>
 				</div>

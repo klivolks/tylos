@@ -8,7 +8,7 @@
 					<a href="/account/"><li>Dashboard</li></a>
 					<a href="/account/history/court/"><li>Court Bookings</li></a>
 					<a href="/account/history/room/"><li>Room Bookings</li></a>
-					<a href="/account/history/event/"><li>Event Bookings</li></a>
+					<a href="/account/history/event/"><li>Course Subscription</li></a>
 					<a href="/account/players/"><li class="active">Player Profile</li></a>
 					<a href="/account/team/"><li>Team</li></a>
 					<a href="/account/profile/"><li>My Profile</li></a>

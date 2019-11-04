@@ -65,7 +65,7 @@
               <td><?php echo $rw['max_occupancy']; ?></td>
               <td><?php echo $rw['description']; ?></td>
               <td>
-                 <a <?php echo  'href="/admin/add/room-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons">delete</i></a>
+                 <a <?php echo  'href="/admin/add/room-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons" onClick="confirm_btn()">delete</i></a>
               </td>
               <td>
                 
@@ -80,3 +80,13 @@
       </div>
     </div>
   </div>
+  <script>
+	function confirm_btn(){
+		if(window.confirm('You really want to delete?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

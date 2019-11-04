@@ -1,7 +1,7 @@
 <div class="col m8 l10 s12 content-body">
 	<div class="row">
 		<div class="col l4 s12 push-l4">
-			<h5>Quick Update</h5>
+			<h5>Quick Update </h5>
 		</div>
 	</div>
 	<div class="row">

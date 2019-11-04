@@ -43,8 +43,8 @@
 						<input class="file-path validate" type="text">
 					</div>
 				</div>
-				<input type="hidden" name="featureCount" id="featureCount" value="1">
-				<div class="col s12 no-padding" id="features">
+				<input type="hidden" name="featureCount" id="featureCount" value="0">
+				<!--<div class="col s12 no-padding" id="features">
 					<div class="col s12 no-padding">
 						<div class="col s10 input-field">
 							<input type="text" class="validate" name="Feature1" id="Feature1">
@@ -54,7 +54,7 @@
 							<button type="button" class="btn red white-text waves-effect" onClick="addFeatureRow()"><i class="material-icons">add_box</i></button>
 						</div>
 					</div>
-				</div>
+				</div>-->
 				<div class="col s12 input-field">
 					<button type="submit" class="btn btn-flat green white-text waves-effect right">CREATE</button>
 				</div>

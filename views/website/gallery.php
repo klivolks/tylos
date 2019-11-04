@@ -14,7 +14,7 @@
 					echo '<div class="col s12 no-padding">';
 				}
 			?>
-			<div class="col l3 s12 no-padding"><img class="materialboxed responsive-img" src="/img/gallery/<?php echo $rw['image']; ?>"></div>
+			<div class="col l3 s12 no-padding" style="height: 240px !important; overflow: hidden;"><img class="materialboxed responsive-img" src="/img/gallery/<?php echo $rw['image']; ?>"></div>
 			<?php
 			if($i==4){ echo '</div>'; $i=0; }
 			endforeach;

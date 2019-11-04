@@ -25,7 +25,9 @@
 						<th>
 							End Date
 						</th>
-							
+						<th>
+							Payment Status
+						</th>	
 						
 					</thead>
 					<tbody>
@@ -39,7 +41,7 @@
 							$id=$rw['bookid'];
 							//echo $id;
 							$data1=$db->get('members','full_name',"where `id`='$user'");
-							$data2=$db->get('invoice','booking_no',"where `booking_id`='$id' AND booking_type=4");
+							$data2=$db->get('invoice','booking_no,status',"where `booking_id`='$id' AND booking_type=4");
 							?>
 
 							
@@ -51,7 +53,22 @@
 							<td><?php echo $data1['result'][0][0]; ?></td>
 							<td><?php echo $rw['start_date']; ?></td>
 							<td><?php echo $rw['end_date']; ?></td>	
-						
+						<td><?php if($data2['result'][0][1]=='0'){
+								 echo 'Undefined';
+							 }
+							elseif($data2['result'][0][1]=='1'){
+								 echo 'Paid Online';
+							 }
+							elseif($data2['result'][0][1]=='2'){
+								 echo '<a href="/admin/pay/bulk/'.$data2['result'][0][0].'/" onClick="confirm_btn()">Confirm payment</a>';
+							 }
+							elseif($data2['result'][0][1]=='3'){
+								 echo 'Payment Received';
+							 }
+							elseif($data2['result'][0][1]=='5'){
+								 echo 'Booking Cancelled';
+							 }
+							?></td>
 							
 							
 						</tr>
@@ -62,3 +79,13 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	function confirm_btn(){
+		if(window.confirm('Are you sure customer paid?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

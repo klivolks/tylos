@@ -26,7 +26,10 @@ if($data1['result'][0][0]>0){
 				<?php
 						}
 					}
+	$data3 = $db->get('news','COUNT(*)',"WHERE 1");
+if($data3['result'][0][0]>2){
 				?>
+				
 				<div class="col l4 s12">
 					<div class="col s12 card white">
 					<?php
@@ -49,6 +52,9 @@ if($data1['result'][0][0]>0){
 						<div class="col s12 read-more" style="padding: 30px !important;">
 							View All
 							</div></a>
+							<?php
+}
+	?>
 					</div>
 				</div>
 			</div>

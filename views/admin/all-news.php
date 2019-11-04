@@ -38,7 +38,7 @@
 					<tbody>
 					<?php
 						$db = new db;
-						$data = $db->get('news','*',"");
+						$data = $db->get('news','*',"WHERE `status` = '1'");
 						$i=1;
 						foreach($data['result'] as $key => $rw){
 						$id=$rw['id']	
@@ -50,7 +50,7 @@
 							<td><img src="/img/news/<?php echo $rw['featured_img'] ?>" class="responsive-img" hight="50px" width="50px"></td>
 							
 							<td>
-								 <a <?php echo  'href="/admin/add/news-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons">delete</i></a>
+								 <a <?php echo  'href="/admin/add/news-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons" onClick="confirm_btn()">delete</i></a>
 							</td>
 							<td>
 								
@@ -64,3 +64,13 @@
 			</div>
 		</div>
 	</div>
+	<script>
+	function confirm_btn(){
+		if(window.confirm('You really want to delete?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

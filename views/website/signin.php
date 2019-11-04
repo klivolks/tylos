@@ -9,10 +9,46 @@
 					<?php
 					$input = new input;
 					$callbackURL = $input->get('callbackURL');
-					if($callbackURL!=''){
+					if($callbackURL=='court'){
 						$callbackURL.='&slot='.$input->get('slot');
 						?>
 						<input type="hidden" name="callbackURL" value="<?php echo $callbackURL ?>" id="callbackURL">
+						<?php
+					}
+					elseif($callbackURL=='long-court'){
+						?>
+						<input type="hidden" name="page" value="long-court">
+						<input type="hidden" name="startdate" value="<?php echo $input->get('start_date') ?>">
+						<input type="hidden" name="enddate" value="<?php echo $input->get('end_date') ?>">
+						<?php
+					}
+					elseif($callbackURL=='room'){
+						?>
+						<input type="hidden" name="page" value="room">
+						<input type="hidden" name="startdate" value="<?php echo $input->get('start_date') ?>">
+						<input type="hidden" name="enddate" value="<?php echo $input->get('end_date') ?>">
+						<?php
+					}
+					$msg = $input->get('msg');
+					if($msg == 'user-not-found'){
+						?>
+						<div class="input-field red-text">
+							<p>User account not found. Please check the credentials.<br></p>
+						</div>
+						<?php
+					}
+					elseif($msg == 'password-doesnt-match'){
+						?>
+						<div class="input-field red-text">
+							<p>Wrong Password. Please check the credentials.<br></p>
+						</div>
+						<?php
+					}
+					elseif($msg == 'reseted-password'){
+						?>
+						<div class="input-field green-text">
+							<p>Your password updated successfully.<br></p>
+						</div>
 						<?php
 					}
 					?>
@@ -25,7 +61,7 @@
 						<label for="Password">Password</label>
 					</div>
 					<div class="input-field">
-						<a href="#" style="top: 0;">Forgot Password ?</a><button type="submit" class="theme-btn right">SIGN IN</button>
+						<a href="/forgot-password/" style="top: 0;">Forgot Password ?</a><button type="submit" class="theme-btn right">SIGN IN</button>
 					</div>
 				</form>
 			</div>

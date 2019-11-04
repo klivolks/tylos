@@ -13,14 +13,14 @@
 				<div class="col s12 center-align" style="margin-bottom: 25px;">
 					Your reservation was confirmed successfully. Our representative will contact you back.
 				</div>
-				<!--<div class="col s12 center-align" style="margin-bottom: 25px;">
+				<div class="col s12 center-align" style="margin-bottom: 25px;">
 					Booking ID : <a href="/booking/details/<?php echo $data['result'][0][0]; ?>/"><strong><?php echo $data['result'][0][0]; ?></strong></a>
-				</div>-->
+				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="grey lighten-2 col l6 push-l3 s12 login-box">
-				<a href="/account/"><i class="material-icons">account_circle</i> <span>My Account</span></a> <a href="/functions/cancel/<?php echo $invoice_id; ?>/" class="right"><i class="material-icons">block</i> <span>Cancel my booking</span></a>
+				<a href="/account/"><i class="material-icons">account_circle</i> <span>My Account</span></a> <a href="/functions/cancel/<?php echo $data['result'][0][0]; ?>/" class="right"><i class="material-icons">block</i> <span>Cancel my booking</span></a>
 			</div>
 		</div>
 	</div>

@@ -15,6 +15,14 @@
 						<input type="hidden" name="callbackURL" value="<?php echo $callbackURL ?>" id="callbackURL">
 						<?php
 					}
+					$msg = $input->get('msg');
+					if($msg == 'error'){
+						?>
+						<div class="input-field red-text">
+							<p>Email Id already exist.<br></p>
+						</div>
+						<?php
+					}
 					?>
 					<input type="hidden" name="klubstaId" id="klubstaId" value="0">
 					<div class="input-field">

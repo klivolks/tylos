@@ -7,7 +7,7 @@ $data = $db->get('events','event_name,ticket_charge,seats',"WHERE `id` = '$event
 $event_name=$data['result'][0][0];
 $ticket_charge=$data['result'][0][1];
 $seats=$data['result'][0][2];
-$data = $db->get('event_tickets','sum(no_of_seats)',"WHERE `event` = '$event' AND `status` = '1'");
+$data = $db->get('event_tickets','count(no_of_seats)',"WHERE `event` = '$event' AND `status` = '1'");
 $booked_seats = $data['result'][0][0];
 $remaining_seats = $seats-$booked_seats;
 ?>
@@ -25,22 +25,26 @@ $remaining_seats = $seats-$booked_seats;
 						<input type="text" value="<?php echo $event_name; ?>" disabled>
 						<input type="hidden" name="event" value="<?php echo $event ?>">
 						<input type="hidden" name="booking_type" value="event">
-						<label>Event</label>
+						<label>Course</label>
 					</div>
 					<div class="col s12 input-field">
 						<input type="number" name="noOfSeats" value="<?php echo $no_seats; ?>" required>
-						<label>No. of Seats</label>
+						<label>No. of Months</label>
 					</div>
 					<div class="col s12 input-field">
 						<input type="text" value="<?php echo $ticket_charge; ?>" disabled>
-						<label>Ticket Cost</label>
+						<label>Course Fee(Per Month)</label>
+					</div>
+					<div class="col s12 input-field">
+						<input type="text" class="datepicker" name="from_month" id="from_month" placeholder="Select Start date" required>
+						<label>Joining From</label>
 					</div>
 					<div class="col s12 input-field">
 						<?php 
 						if($remaining_seats<$no_seats){
 						?>
 							<div class="card card-panel red white-text">
-								Sorry! There are only <?php echo $remaining_seats; ?> seats available.
+								Sorry! No seats available.
 							</div>
 						<?php	
 						}

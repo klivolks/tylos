@@ -5,7 +5,7 @@
       $msg=$_REQUEST['msg'];
       if($msg=='1'){
         ?>
-          <div class="card-panel green white-text">Events Edited successfully!!</div>
+          <div class="card-panel green white-text">Courses Edited successfully!!</div>
         <?php
       }
       
@@ -14,7 +14,7 @@
       
     ?>
       <div class="col s8">
-        <h5>ALL EVENTS</h5>
+        <h5>ALL COURSES</h5>
       </div>
       
     </div>
@@ -37,16 +37,13 @@
             </th>
           
             <th>
-              Event Starting
+              Course Starting
             </th>
              <th>
-            Event Ending
+            Course Ending
             </th>
             <th>
             Description
-            </th>
-            <th>
-            Seats
             </th>
           </thead>
           <tbody>
@@ -66,9 +63,8 @@
               
               <td><?php echo $rw['event_ending']; ?></td>
               <td><?php echo $rw['description']; ?></td>
-              <td><?php echo $rw['seats']; ?></td>
               <td>
-                 <a <?php echo  'href="/admin/add/event-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons">delete</i></a>
+                 <a <?php echo  'href="/admin/add/event-delete/?id='.$id.'"' ?>  class="btn-floating red" ><i class="material-icons" onClick="confirm_btn()">delete</i></a>
               </td>
               <td>
                 
@@ -82,3 +78,13 @@
       </div>
     </div>
   </div>
+  <script>
+	function confirm_btn(){
+		if(window.confirm('You really want to delete?') == true){ 
+			//window.location.assign('/functions/cancel/<?php echo $data['result'][0][0]; ?>/');
+		}
+		else{
+			event.preventDefault(); 
+		}
+	}
+</script>

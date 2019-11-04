@@ -23,7 +23,7 @@
 						$member = $_SESSION['member'];
 						$data = $db->get('members','full_name',"WHERE `id` = '$member'");
 						?>
-						<span>Hi,</span> <a href="/account/profile"><?php echo $data['result'][0][0]; ?></a> <span>|</span> <a href="/logout/" style="top: 0;"><i class="material-icons">power_settings_new</i></a> <a href="/account/" style="top: 0;"><img src="/img/account-icon.png" width="30"></a>
+						<span>Hi,</span> <a href="/account/"><?php echo $data['result'][0][0]; ?></a> <span>|</span> <a href="/logout/" style="top: 0;"><i class="material-icons">power_settings_new</i></a> <a href="/account/profile/" style="top: 0;"><img src="/img/account-icon.png" width="30"></a>
 						<?php
 					}
 					else{
@@ -45,9 +45,9 @@
 			<div class="col s10">
 				<ul class="hide-on-med-and-down">
 					<li><a href="/about-us-tylos/">We're tylos</a></li>
-					<li><a href="/search/court/">Courts</a></li>
-					<li><a href="/search/rooms/">Rooms</a></li>
-					<li><a href="/search/events/">Events</a></li>
+					<li><a href="/search/court-new/">Courts</a></li>
+					<li><a href="/search/room-new/">Rooms</a></li>
+					<li><a href="/search/events/">Courses</a></li>
 					<li><a href="/blog/">Blog</a></li>
 					<li><a href="/gallery/">Gallery</a></li>
 					<li><a href="/contact-us-tylos/">Contact Us</a></li>

@@ -62,7 +62,7 @@
 				<p>Every court is floodlit and have seating for spectators.</p>
 				<p>In addto its badminton
 		, padel and squash courts, TYLOS offers a range of other facilities.</p>
-				<p style="margin-top: 30px;"><a href="/search/court/" class="theme-btn">View Courts</a></p>
+				<p style="margin-top: 30px;"><a href="/search/court-new/" class="theme-btn">Book Your Court</a></p>
 			</div>
 			<div class="col l6 s12">
 				<img src="/img/We_are_tylos_page_court_facilities_image.jpg" class="responsive-img">

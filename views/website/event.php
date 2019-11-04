@@ -5,26 +5,25 @@ $data = $db->get('events','*',"WHERE `id` = '$event'");
 if($data['result']!=''){
 	foreach($data['result'] as $key=>$rw){
 	?>
-	<section class="court-banner">
-		<div class="featured-img">
-			<img src="/img/events_badminton_coaching_banner.jpg" style="width: 100%">
+	<!--<section class="court-banner">
+		<div class="featured-img" style="max-height: 200px;">
+			<img src="/img/<?php echo $rw['featured_img']; ?>" style="width: 100%">
 		</div>
-	</section>
+	</section>-->
 	<section class="court-heading white">
 		<div class="container">
 			<div class="row">
 				<div class="col s12 center-align">
-					<h1><?php echo $rw['event_name']; ?><br><small><i class="material-icons">location_on</i> <?php echo $rw['venue'] ?></small></h1>
+					<h1><?php echo $rw['event_name']; ?></h1>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col s12">
 					<p><?php echo $rw['description']; ?></p>
 					<p><ul class="features">
-						<li>Seats: <strong><?php echo $rw['seats']; ?></strong></li>
-						<li>Ticket charge: <strong>&#8377; <?php echo $rw['ticket_charge']; ?></strong></li>
-						<li>Event Starting on: <strong><?php echo date('d M Y',strtotime($rw['event_starting'])); ?></strong></li>
-						<li>Event will end by: <strong><?php echo date('d M Y',strtotime($rw['event_ending'])); ?></strong></li>
+						<li>Fees: <strong>&#8377; <?php echo $rw['ticket_charge']; ?></strong></li>
+						<li>Course Starting on: <strong><?php echo date('d M Y',strtotime($rw['event_starting'])); ?></strong></li>
+						<li>Course will end by: <strong><?php echo date('d M Y',strtotime($rw['event_ending'])); ?></strong></li>
 					</ul></p>
 				</div>
 			</div>
@@ -38,13 +37,12 @@ if($data['result']!=''){
 				</div>
 				<div class="col l6 m6 s12">
 					<p><strong>Reserve seats with our advanced booking system.</strong></p>
-					<p>Badminton
-		 players with an eye on competing professionally will want to practice and play on different types of courts. Tylos has the most comfortable rooms and its completely family friendly.</p>
+					
 					<p>Our Advanced Booking system has made simple and easy to book.  </p>
 					<form action="/ticket-book/<?php echo $rw['id']; ?>/" method="post">
 					<p id="msg"></p>
-					<p style="margin-top: 20px;"><div class="input-field"><input type="number" class="validate" id="noOfSeats" name="noOfSeats" required><label>Number of seats*</label></div></p>
-					<p><button type="submit" class="theme-btn right">Book Now</button></p>
+					<p style="margin-top: 20px;"><div class="input-field"><input type="hidden" class="validate" id="noOfSeats" name="noOfSeats" value="1" required></div></p>
+					<p><button type="submit" class="theme-btn right">Apply Now</button></p>
 					</form>
 				</div>
 			</div>

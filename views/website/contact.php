@@ -26,7 +26,7 @@
 					</p>
 				</div>
 				<div class="col l6 s12">
-					<form class="row">
+					<form class="row" action="/functions/contact/" method="post">
 						<div class="col s12 input-field">
 							<input type="text" name="FullName" class="validate" required>
 							<label>Full Name</label>

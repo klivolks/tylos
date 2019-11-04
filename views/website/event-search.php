@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col s12">
-				<h1>Events<br><small>These are our prestigious events</small></h1>
+				<h1>Courses<br><small>These are our prestigious courses</small></h1>
 			</div>
 		</div>
 		<div class="row">

@@ -18,13 +18,22 @@
 				</div>
 				<?php
 				if($booking_type=='court'){
-					$court_id = $input->post('court');
+					$i=1;
+					$allslots=$_POST['slots'];
+					foreach($allslots as $rw){
+					$slot_id = date("H:i:s",$rw);
+					$date = date("Y-m-d",strtotime($input->post(court)));
+					$data = $db->get('court_inventory','`date`,`time`,`price`,`id`,`court_id`',"WHERE `time` = '$slot_id' AND `status` = 1 AND `date` = '$date' LIMIT 0,1");
+					$slot = $data['result'][0];
+					$court_id = $slot[4];
 					$data = $db->get('courts','court_name',"WHERE `id` = '$court_id'");
 					$court_name = $data['result'][0][0];
-					$slot_id = $input->post('timeSlot');
-					$data = $db->get('court_inventory','`date`,`time`,`price`',"WHERE `id` = '$slot_id'");
-					$slot = $data['result'][0];
 				?>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s12">
+						<strong>Booking <?php echo $i; $i++; ?></strong>
+					</div>
+				</div>
 				<div class="col s12 no-padding" style="margin-bottom:15px;">
 					<div class="col s4">Court : </div>
 					<div class="col s8">
@@ -35,13 +44,13 @@
 					<div class="col s4">Date : </div>
 					<div class="col s8">
 						<?php echo date('d M Y',strtotime($slot[0])); ?>
-						<input type="hidden" name="timeSlot" value="<?php echo $slot_id; ?>">
+						<input type="hidden" name="timeSlot[]" value="<?php echo $slot[3]; ?>">
 					</div>
 				</div>
 				<div class="col s12 no-padding" style="margin-bottom:15px;">
 					<div class="col s4">Time : </div>
 					<div class="col s8">
-						<?php echo date('h:i a',strtotime($slot[1])); ?>
+						<?php echo date('h:i a',strtotime($slot[1])).'-'.date("h:i a",strtotime($slot[1])+1800); ?>
 					</div>
 				</div>
 				<div class="col s12 no-padding" style="margin-bottom:15px;">
@@ -51,6 +60,7 @@
 					</div>
 				</div>
 				<?php
+					}
 				}
 				elseif($booking_type=='longbook'){
 					$court_id = $input->post('court');
@@ -59,13 +69,21 @@
 					$sdate = date('Y-m-d',strtotime($input->post('startdate')));
 					$edate = date('Y-m-d',strtotime($input->post('enddate')));
 					$price=0;
-					$current_date = $sdate;
-					while($current_date<=$edate){
-						$data = $db->get('court_inventory','`price`',"WHERE `date` = '$current_date' AND `court_id` = '$court_id'");
-						foreach($data['result'] as $key=>$slot){
-							$price += $slot[0];
-						}
+					$allslots=$_POST['slots'];
+						$current_date = $sdate;
+						while($current_date<=$edate){
+							foreach($allslots as $rw){
+								$slot =date("H:i:s", $rw);
+								$data = $db->get('court_inventory','`price`,`id`',"WHERE `date` = '$current_date' AND `status` = '1' AND `time` = '$slot' GROUP BY `time`");
+								if(isset($data['result'])){
+									foreach($data['result'] as $key=>$slot_data){
+										$price += $slot_data[0];
+										$slot_id[] =  $slot_data[1];
+									}
+								}
+							}
 						$current_date=date('Y-m-d',(strtotime($current_date)+86400));
+							
 					}
 				?>
 				<div class="col s12 no-padding" style="margin-bottom:15px;">
@@ -90,26 +108,36 @@
 					</div>
 				</div>
 				<div class="col s12 no-padding" style="margin-bottom:15px;">
+					<div class="col s4">Slot : </div>
+					<div class="col s8">
+						<?php foreach($allslots as $rw){ echo date('h:i a',$rw).', '; }
+						foreach($slot_id as $slot){
+						?>
+						<input type="hidden" name="slot[]" value="<?php echo $slot; ?>">
+						<?php
+						}
+					?>
+					</div>
+				</div>
+				<div class="col s12 no-padding" style="margin-bottom:15px;">
 					<div class="col s4">Price : </div>
 					<div class="col s8">
-						Rs. <?php echo $price; ?>
+						Rs. <?php echo $price*1.18; ?>
 					</div>
 				</div>
 				<?php
 				}
 				elseif($booking_type=='room'){
-					$room_id = $input->post('room');
-					$data = $db->get('rooms','room_name,rent',"WHERE `id` = '$room_id'");
+					$rooms = $input->post('no_of_rooms');
 					$check_in = $input->post('check_in');
 					$check_out = $input->post('check_out');
 					$no_of_days = ((strtotime($check_out)-strtotime($check_in))/(60*60*24))+1;
-					$rent = $data['result'][0][1]*$no_of_days;
 					?>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Room : </div>
+						<div class="col s4">No. of Rooms : </div>
 						<div class="col s8">
-							<?php echo $data['result'][0][0]; ?>
-							<input type="hidden" name="room" value="<?php echo $room_id; ?>">
+							<?php echo $rooms ?>
+							<input type="hidden" name="no_of_rooms" value="<?php echo $rooms; ?>">
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
@@ -126,41 +154,17 @@
 							<input type="hidden" name="check_out" value="<?php echo $check_out; ?>">
 						</div>
 					</div>
-					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Number of Persons : </div>
-						<div class="col s8">
-							<?php echo $input->post('persons'); ?>
-							<input type="hidden" name="persons" value="<?php echo $input->post('persons'); ?>">
-						</div>
-					</div>
-					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Rent per day : </div>
-						<div class="col s8">
-							<?php echo $data['result'][0][1]; ?>
-						</div>
-					</div>
-					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Number of Days : </div>
-						<div class="col s8">
-							<?php echo $no_of_days; ?>
-						</div>
-					</div>
-					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Total Rent : </div>
-						<div class="col s8">
-							<?php echo $rent; ?>
-						</div>
-					</div>
 					<?php
 				}
 				elseif($booking_type=='event'){
 					$event_id = $input->post('event');
 					$no_of_seats = $input->post('noOfSeats');
+					$from_month = $input->post('from_month');
 					$data = $db->get('events','event_name,ticket_charge,venue,event_starting,event_ending',"WHERE `id` = '$event_id'");
 					$total = $no_of_seats*$data['result'][0][1];
 					?>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Event : </div>
+						<div class="col s4">Course : </div>
 						<div class="col s8">
 							<?php echo $data['result'][0][0]; ?>
 							<input type="hidden" name="event" value="<?php echo $event_id; ?>">
@@ -173,36 +177,37 @@
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Ticket Charge : </div>
+						<div class="col s4">Course Fee : </div>
 						<div class="col s8">
 							<?php echo $data['result'][0][1]; ?>
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">No. Of Seats : </div>
+						<div class="col s4">No. Of Months : </div>
 						<div class="col s8">
 							<?php echo $no_of_seats; ?>
 							<input type="hidden" name="noOfSeats" value="<?php echo $no_of_seats; ?>">
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Total Charge : </div>
+						<div class="col s4">Total Fees : </div>
 						<div class="col s8">
 							<strong><?php echo $total; ?></strong>
 						</div>
 					</div>
 					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Starting Date : </div>
+						<div class="col s4">Subscribed from : </div>
 						<div class="col s8">
-							<?php echo date('d M Y',strtotime($data['result'][0][3])); ?>
+							<?php echo date('d M,Y',strtotime($from_month)); ?>
+							<input type="hidden" name="from_month" value="<?php echo date("Y-m-d",strtotime($from_month)); ?>">
 						</div>
 					</div>
-					<div class="col s12 no-padding" style="margin-bottom:15px;">
-						<div class="col s4">Ending Date : </div>
+					<!--<div class="col s12 no-padding" style="margin-bottom:15px;">
+						<div class="col s4">Course Ending Date : </div>
 						<div class="col s8">
 							<?php echo date('d M Y',strtotime($data['result'][0][4])); ?>
 						</div>
-					</div>
+					</div>-->
 					<?php
 				}
 				if(isset($_SESSION['member'])){

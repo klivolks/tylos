@@ -15,7 +15,7 @@
 				<a href="#" onClick="activate_tab(2)">
 					<div class="icon" id="icon-2">
 						<img src="/img/event-book-icon.png" height="50"><br>
-						Events
+						Courses
 					</div>
 				</a>
 				<a href="#" onClick="activate_tab(3)">
@@ -41,14 +41,28 @@
 					</form>
 				</div>
 				<div class="col s12 book-item">
-					<h1 class="center-align">Book for a longer period</h1>
+					<h1 class="center-align">Book for a longer period<br><small>Host your own event</small></h1>
 				</div>
 				<div class="col s12 book-item">
 					<form action="/list/court-long/" method="post">
-						<div class="col l6 s12 item-detail">
-							<input type="text" class="daterange" name="dateOfBooking" placeholder="select date range" required>
+						<div class="col l4 s12">
+							<input type="text" class="datepicker" name="startdate" id="startdate" placeholder="Select Start date" onChange="end_date()" required>
 						</div>
-						<div class="col l6 s12 right-align">
+						<div class="col l4 s12">
+							<input type="text" class="datepicker2" name="enddate" id="enddate" placeholder="Select End date" required>
+						</div>
+						<!--<div class="col l3 s12">
+							<select name="slot">
+								<?php
+								$db = new db;
+								$slots = $db->get('court_inventory','DISTINCT(`time`)',"WHERE `status` = 1 ORDER BY `time`");
+								foreach($slots['result'] as $slot){
+									echo '<option value="'.date("H:i:s",strtotime($slot[0])).'">'.date("h:i a",strtotime($slot[0])).'</option>';
+								}
+								?>
+							</select>
+						</div>-->
+						<div class="col l4 s12 right-align">
 							<button type="submit" class="book-btn">Search Availablity</button>
 						</div>
 					</form>
@@ -62,15 +76,13 @@
 				?>
 				<div class="col s12 book-item">
 					<form action="/ticket-book/<?php echo $rw['id']; ?>/" method="post">
-						<div class="col l2 s12">
-							<input type="number" class="validate" name="noOfSeats" placeholder="No. of Seats" required>
-						</div>
-						<a href="/event/<?php echo $rw['id']; ?>"><div class="col l8 s12 item-detail">
+							<input type="hidden" class="validate" name="noOfSeats" placeholder="No. of Months" value="1" required>
+						<a href="/event/<?php echo $rw['id']; ?>"><div class="col l10 s12 item-detail">
 							<?php echo $rw['event_name']  ?><br>
 							<small><?php echo $rw['venue'].', '.date('d M',strtotime($rw['event_starting'])).' - '.date('d M',strtotime($rw['event_ending']));  ?></small>
 						</div></a>
 						<div class="col l2 s12 right-align">
-							<button type="submit" class="book-btn">Book Now</button>
+							<button type="submit" class="book-btn">Apply Now</button>
 						</div>
 					</form>
 				</div>
@@ -83,10 +95,10 @@
 				<div class="col s12 book-item">
 					<form action="/list/room/" method="post">
 						<div class="col l4 s12">
-							<input type="text" class="datepicker" name="check_in" placeholder="Select date" required>
+							<input type="text" class="datepicker" name="check_in" id="check_in" placeholder="Select CheckIn date" onChange="checkout()" required>
 						</div>
 						<div class="col l4 s12">
-							<input type="text" class="datepicker" name="check_out" placeholder="Select date" required>
+							<input type="text" class="datepicker2" name="check_out" id="check_out" placeholder="Select CheckOut date" required>
 						</div>
 						<div class="col l4 s12 right-align">
 							<button type="submit" class="book-btn">Check Room Availability</button>
